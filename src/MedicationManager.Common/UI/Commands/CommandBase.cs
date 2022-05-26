@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace MedicationManager.Common.Commands
+namespace MedicationManager.Common.UI.Commands
 {
     /// <summary>
     /// Sync base command

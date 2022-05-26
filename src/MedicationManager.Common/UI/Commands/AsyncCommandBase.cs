@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MedicationManager.Common.Commands
+namespace MedicationManager.Common.UI.Commands
 {
     public abstract class AsyncCommandBase : ICommand
     {
