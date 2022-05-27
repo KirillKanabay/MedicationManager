@@ -4,20 +4,21 @@ using MaterialDesignExtensions.Model;
 using MedicationManager.Common.UI.Commands;
 using MedicationManager.Common.UI.Immutable;
 using MedicationManager.Common.UI.ViewModels;
+using MedicationManager.UI.Core.ViewModels.Medications;
 
 namespace MedicationManager.UI.Core.ViewModels
 {
     public class StartWindowViewModel : BaseViewModel
     {
         private readonly string _defaultMenuItem = MainMenuNames.Medication;
-        
         private readonly MainMenuViewModel _mainMenuViewModel;
         
         private BaseViewModel _currentViewModel;
         
-        public StartWindowViewModel(MainMenuViewModel mainMenuViewModel)
+        public StartWindowViewModel(MainMenuViewModel mainMenuViewModel, MedicationPageViewModel medicationPageViewModel)
         {
             MainMenuViewModel = mainMenuViewModel ?? throw new ArgumentNullException(nameof(mainMenuViewModel));
+            CurrentViewModel = medicationPageViewModel;
         }
 
         public string Title => "Управление медикаментами";

@@ -23,6 +23,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Snackbar.xaml" />
                 <ResourceDictionary Source="../Styles/NavigationStyle.xaml" />
                 <ResourceDictionary Source="../Styles/HeaderWindowStyle.xaml" />
+                <ResourceDictionary Source="../DataContext.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
