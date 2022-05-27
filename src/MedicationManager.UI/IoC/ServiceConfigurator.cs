@@ -2,10 +2,13 @@
 using MedicationManager.Data.Medications.Repositories;
 using MedicationManager.Infrastructure.Configurations;
 using MedicationManager.Infrastructure.Contexts;
+using MedicationManager.UI.Core.ViewModels;
+using MedicationManager.UI.Core.ViewModels.Medications;
+using MedicationManager.UI.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MedicationManager.UI.Core.IoC
+namespace MedicationManager.UI.IoC
 {
     public static class ServiceConfigurator
     {
@@ -23,6 +26,19 @@ namespace MedicationManager.UI.Core.IoC
         public static void RegisterRepositories(this IServiceCollection services)
         {
             services.AddSingleton<IMedicationRepository, MedicationRepository>();
+        }
+        
+        public static void RegisterViewModels(this IServiceCollection services)
+        {
+            services.AddTransient<StartWindowViewModel>();
+            services.AddTransient<MainMenuViewModel>();
+
+            services.AddTransient<MedicationPageViewModel>();
+        }
+
+        public static void RegisterWindows(this IServiceCollection services)
+        {
+            services.AddTransient<StartWindow>();
         }
     }
 }

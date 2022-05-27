@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using MedicationManager.UI.Core.IoC;
+using MedicationManager.UI.IoC;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,6 +20,8 @@ namespace MedicationManager.UI
 
             services.RegisterDatabase(_configuration);
             services.RegisterRepositories();
+            services.RegisterViewModels();
+            services.RegisterWindows();
 
             return services;
         }
