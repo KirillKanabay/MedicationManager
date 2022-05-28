@@ -29,7 +29,7 @@
     </Window.Resources>
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">
-            <b:InvokeCommandAction Command="{Binding LoadedCommand}" />
+            <b:InvokeCommandAction Command="{Binding OnLoadedCommand}" />
         </b:EventTrigger>
     </b:Interaction.Triggers>
     <materialDesign:Card

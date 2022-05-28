@@ -14,8 +14,9 @@ namespace MedicationManager.UI.Core.ViewModels
         private readonly MainMenuViewModel _mainMenuViewModel;
         
         private BaseViewModel _currentViewModel;
-        
-        public StartWindowViewModel(MainMenuViewModel mainMenuViewModel, MedicationPageViewModel medicationPageViewModel)
+        private string _currentViewModelName;
+
+        public StartWindowViewModel(MainMenuViewModel mainMenuViewModel, MedicationControlViewModel medicationPageViewModel)
         {
             MainMenuViewModel = mainMenuViewModel ?? throw new ArgumentNullException(nameof(mainMenuViewModel));
             CurrentViewModel = medicationPageViewModel;
@@ -47,12 +48,16 @@ namespace MedicationManager.UI.Core.ViewModels
         {
             if (_.NavigationItemToSelect is FirstLevelNavigationItem navigationItem)
             {
-                CurrentViewModel = _mainMenuViewModel.NavigationViewModels[navigationItem.Label];
+                if (!navigationItem.Label?.Equals(_currentViewModelName) ?? false)
+                {
+                    CurrentViewModel = _mainMenuViewModel.NavigationViewModels[navigationItem.Label];
+                }
             }
         });
 
         public DelegateCommand OnLoadedCommand => new(_ =>
         {
+            _currentViewModelName = _defaultMenuItem;
             CurrentViewModel = _mainMenuViewModel.NavigationViewModels[_defaultMenuItem];
         });
     }

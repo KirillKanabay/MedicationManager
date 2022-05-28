@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:medications="clr-namespace:MedicationManager.UI.Core.ViewModels.Medications;assembly=MedicationManager.UI.Core"
                     xmlns:views="clr-namespace:MedicationManager.UI.Views">
-    <DataTemplate DataType="{x:Type medications:MedicationPageViewModel}">
-        <views:MedicationsView/>
+    <DataTemplate DataType="{x:Type medications:MedicationControlViewModel}">
+        <views:MedicationsControlView/>
     </DataTemplate>
 </ResourceDictionary>

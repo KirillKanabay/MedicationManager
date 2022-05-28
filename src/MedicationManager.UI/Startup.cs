@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using MedicationManager.Common.UI;
 using MedicationManager.UI.IoC;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,11 +19,16 @@ namespace MedicationManager.UI
         {
             var services = new ServiceCollection();
 
+            services.AddSingleton<ViewModelLocator>();
+
             services.RegisterDatabase(_configuration);
             services.RegisterRepositories();
             services.RegisterViewModels();
             services.RegisterWindows();
-
+            services.RegisterBllServices();
+            services.RegisterViews();
+            services.RegisterMappers();
+            
             return services;
         }
 

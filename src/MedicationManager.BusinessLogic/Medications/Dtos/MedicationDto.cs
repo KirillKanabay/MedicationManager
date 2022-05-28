@@ -1,8 +1,8 @@
-﻿using MedicationManager.Common.Data.Documents;
+﻿using MedicationManager.Common.BusinessLogic;
 
-namespace MedicationManager.Data.Medications.Documents
+namespace MedicationManager.BusinessLogic.Medications.Dtos
 {
-    public class MedicationDocument : DocumentBase
+    public class MedicationDto : BaseDto
     {
         public string Name { get; set; }
         public string Description { get; set; }
