@@ -111,21 +111,21 @@
                 VerticalScrollBarVisibility="Visible">
                 <DataGrid.Columns>
                     <materialDesign:DataGridTextColumn
-                        Binding="{Binding Name}"
+                        Binding="{Binding Model.Name}"
                         Header="Название"
                         IsReadOnly="True" />
                     <materialDesign:DataGridTextColumn
-                        Binding="{Binding Manufacturer}"
+                        Binding="{Binding Model.Manufacturer}"
                         Header="Производитель"
                         IsReadOnly="True" />
                     <materialDesign:DataGridTextColumn
-                        Binding="{Binding Price}"
+                        Binding="{Binding Model.Price}"
                         Header="Стоимость (BYN)"
                         IsReadOnly="True" />
                     <DataGridTemplateColumn Header="Редактировать">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding EditCommand}" Style="{StaticResource TransparentButton}">
+                                <Button Command="{Binding EditItemCommand}" Style="{StaticResource TransparentButton}">
                                     <materialDesign:PackIcon
                                         Width="18"
                                         Height="18"
@@ -137,7 +137,7 @@
                     <DataGridTemplateColumn Header="Удалить">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding RemoveCommand}" Style="{StaticResource TransparentButton}">
+                                <Button Command="{Binding RemoveItemCommand}" Style="{StaticResource TransparentButton}">
                                     <materialDesign:PackIcon
                                         Width="18"
                                         Height="18"

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace MedicationManager.Common.UI.Commands
+namespace MedicationManager.UI.Common.Commands
 {
     public class AsyncRelayCommand : AsyncCommandBase
     {

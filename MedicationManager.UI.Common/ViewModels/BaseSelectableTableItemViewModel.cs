@@ -1,6 +1,6 @@
-﻿using MedicationManager.Common.UI.Commands;
+﻿using MedicationManager.UI.Common.Commands;
 
-namespace MedicationManager.Common.UI.ViewModels
+namespace MedicationManager.UI.Common.ViewModels
 {
     public abstract class BaseSelectableTableItemViewModel : BaseViewModel
     {

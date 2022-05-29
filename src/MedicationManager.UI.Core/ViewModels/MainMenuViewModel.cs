@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using MaterialDesignExtensions.Model;
 using MaterialDesignThemes.Wpf;
-using MedicationManager.Common.UI;
-using MedicationManager.Common.UI.Immutable;
-using MedicationManager.Common.UI.ViewModels;
-using MedicationManager.UI.Core.ViewModels.Medications;
+using MedicationManager.UI.Common;
+using MedicationManager.UI.Common.Immutable;
+using MedicationManager.UI.Common.ViewModels;
+using MedicationControlViewModel = MedicationManager.UI.Core.ViewModels.Medications.Control.MedicationControlViewModel;
 
 namespace MedicationManager.UI.Core.ViewModels
 {

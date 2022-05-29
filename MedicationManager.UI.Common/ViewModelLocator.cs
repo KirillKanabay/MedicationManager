@@ -1,8 +1,8 @@
 ﻿using System;
-using MedicationManager.Common.UI.ViewModels;
+using MedicationManager.UI.Common.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MedicationManager.Common.UI
+namespace MedicationManager.UI.Common
 {
     public class ViewModelLocator
     {

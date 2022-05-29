@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MedicationManager.BusinessLogic.Medications.Dtos;
-using MedicationManager.UI.Core.ViewModels.Medications;
+using MedicationManager.UI.Core.Models;
 
 namespace MedicationManager.UI.Core.Mappings
 {
@@ -8,7 +8,7 @@ namespace MedicationManager.UI.Core.Mappings
     {
         public MedicationProfile()
         {
-            CreateMap<MedicationListItemDto, MedicationSelectableItemViewModel>();
+            CreateMap<MedicationListItemDto, MedicationSelectableItemModel>();
         }
     }
 }

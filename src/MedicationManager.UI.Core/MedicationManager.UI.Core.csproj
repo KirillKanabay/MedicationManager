@@ -1,8 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignExtensions" Version="3.3.0" />
@@ -14,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\MedicationManager.UI.Common\MedicationManager.UI.Common.csproj" />
     <ProjectReference Include="..\MedicationManager.BusinessLogic\MedicationManager.BusinessLogic.csproj" />
     <ProjectReference Include="..\MedicationManager.Data\MedicationManager.Data.csproj" />
     <ProjectReference Include="..\MedicationManager.Infrastructure\MedicationManager.Infrastructure.csproj" />

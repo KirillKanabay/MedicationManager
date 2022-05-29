@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MedicationManager.UI.Windows"
+        xmlns:immutable="clr-namespace:MedicationManager.UI.Common.Immutable;assembly=MedicationManager.UI.Common"
         Width="1200"
         Height="700"
         AllowsTransparency="True"
@@ -112,7 +113,7 @@
                 x:Name="DialogHost"
                 Grid.Row="1"
                 CloseOnClickAway="True"
-                Identifier="RootDialog">
+                Identifier="{x:Static immutable:HostRoots.DialogRoot}">
                 <materialDesign:DrawerHost x:Name="DrawerHost">
                     <Grid>
                         <Grid.ColumnDefinitions>

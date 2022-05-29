@@ -1,5 +1,6 @@
 ﻿using System.IO;
-using MedicationManager.Common.UI;
+using MedicationManager.UI.Common;
+using MedicationManager.UI.Core.Factories;
 using MedicationManager.UI.IoC;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,7 @@ namespace MedicationManager.UI
             var services = new ServiceCollection();
 
             services.AddSingleton<ViewModelLocator>();
+            services.AddSingleton<MedicationDialogFactory>();
 
             services.RegisterDatabase(_configuration);
             services.RegisterRepositories();
