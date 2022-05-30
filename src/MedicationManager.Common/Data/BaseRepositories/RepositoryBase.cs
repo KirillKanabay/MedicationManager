@@ -59,6 +59,13 @@ namespace MedicationManager.Common.Data.BaseRepositories
             return Collection.Find(filter).ToListAsync();
         }
 
+        public virtual Task UpdateOneAsync(TDocument document)
+        {
+            var filter = Builders<TDocument>.Filter.Eq(x => x.Id, document.Id);
+
+            return Collection.ReplaceOneAsync(filter, document);
+        }
+
         public virtual async Task RemoveAsync(string id)
         {
             var filter = Builders<TDocument>.Filter.Eq(document => document.Id, id);

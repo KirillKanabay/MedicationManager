@@ -1,14 +1,16 @@
-﻿using MedicationManager.UI.Common.ViewModels;
+﻿using MedicationManager.UI.Common.Models;
 
-namespace MedicationManager.UI.Core.ViewModels.Medications
+namespace MedicationManager.UI.Core.Models
 {
-    public abstract class MedicationImportViewModelBase : BaseInteractionViewModel
+    public class MedicationImportModel : BaseModel
     {
         private string _name;
         private string _description;
         private string _manufacturer;
         private bool _receiptRequired;
         private decimal _price;
+
+        public string Id { get; set; }
 
         public string Name
         {

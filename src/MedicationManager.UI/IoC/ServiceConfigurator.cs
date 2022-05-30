@@ -9,13 +9,11 @@ using MedicationManager.Infrastructure.Configurations;
 using MedicationManager.Infrastructure.Contexts;
 using MedicationManager.UI.Core.ViewModels;
 using MedicationManager.UI.Core.ViewModels.Medications;
-using MedicationManager.UI.Core.ViewModels.Medications.Creator;
-using MedicationManager.UI.Core.ViewModels.Medications.Editor;
 using MedicationManager.UI.Views;
 using MedicationManager.UI.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MedicationControlViewModel = MedicationManager.UI.Core.ViewModels.Medications.Control.MedicationControlViewModel;
+using MedicationControlViewModel = MedicationManager.UI.Core.ViewModels.Medications.MedicationControlViewModel;
 
 namespace MedicationManager.UI.IoC
 {

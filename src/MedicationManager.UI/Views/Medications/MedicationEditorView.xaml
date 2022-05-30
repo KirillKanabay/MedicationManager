@@ -58,7 +58,7 @@
                     <TextBox.Text>
                         <Binding
                             Mode="TwoWay"
-                            Path="Name"
+                            Path="Model.Name"
                             UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <DataErrorValidationRule />
@@ -72,7 +72,7 @@
                         <TextBlock>Производитель</TextBlock>
                     </materialDesign:HintAssist.Hint>
                     <TextBox.Text>
-                        <Binding Path="Manufacturer" UpdateSourceTrigger="PropertyChanged">
+                        <Binding Path="Model.Manufacturer" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <DataErrorValidationRule />
                             </Binding.ValidationRules>
@@ -85,7 +85,7 @@
                         <TextBlock>Описание</TextBlock>
                     </materialDesign:HintAssist.Hint>
                     <TextBox.Text>
-                        <Binding Path="Description" UpdateSourceTrigger="PropertyChanged">
+                        <Binding Path="Model.Description" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <DataErrorValidationRule />
                             </Binding.ValidationRules>
@@ -116,7 +116,7 @@
                             Margin="265,0,0,0"
                             Padding="1000"
                             VerticalAlignment="Center"
-                            IsChecked="{Binding ReceiptRequired}" />
+                            IsChecked="{Binding Model.ReceiptRequired}" />
                     </Grid>
                 </Border>
                 <TextBox Margin="0,8,0,20" Style="{StaticResource InputTextBox}">
@@ -126,7 +126,7 @@
                     <TextBox.Text>
                         <Binding
                             Mode="TwoWay"
-                            Path="Price"
+                            Path="Model.Price"
                             UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <DataErrorValidationRule />
@@ -152,7 +152,7 @@
                 <Button
                     Margin="0,0,5,10"
                     HorizontalAlignment="Right"
-                    Command="{Binding SaveItem}"
+                    Command="{Binding SaveItemCommand}"
                     Cursor="Hand"
                     FontSize="14"
                     IsEnabled="{Binding SaveButtonIsEnabled}"

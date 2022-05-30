@@ -9,6 +9,7 @@ namespace MedicationManager.UI.Core.Mappings
         public MedicationProfile()
         {
             CreateMap<MedicationListItemDto, MedicationSelectableItemModel>();
+            CreateMap<MedicationDto, MedicationImportModel>().ReverseMap();
         }
     }
 }

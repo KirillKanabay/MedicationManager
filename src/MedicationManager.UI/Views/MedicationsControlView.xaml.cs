@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 using MedicationManager.UI.Core.ViewModels.Medications;
-using MedicationControlViewModel = MedicationManager.UI.Core.ViewModels.Medications.Control.MedicationControlViewModel;
+using MedicationControlViewModel = MedicationManager.UI.Core.ViewModels.Medications.MedicationControlViewModel;
 
 
 namespace MedicationManager.UI.Views

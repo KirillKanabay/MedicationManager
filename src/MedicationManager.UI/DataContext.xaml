@@ -2,17 +2,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:medications="clr-namespace:MedicationManager.UI.Core.ViewModels.Medications;assembly=MedicationManager.UI.Core"
                     xmlns:views="clr-namespace:MedicationManager.UI.Views"
-                    xmlns:medicationViews="clr-namespace:MedicationManager.UI.Views.Medications"
-                    xmlns:control="clr-namespace:MedicationManager.UI.Core.ViewModels.Medications.Control;assembly=MedicationManager.UI.Core"
-                    xmlns:creator="clr-namespace:MedicationManager.UI.Core.ViewModels.Medications.Creator;assembly=MedicationManager.UI.Core"
-                    xmlns:editor="clr-namespace:MedicationManager.UI.Core.ViewModels.Medications.Editor;assembly=MedicationManager.UI.Core">
-    <DataTemplate DataType="{x:Type control:MedicationControlViewModel}">
+                    xmlns:medicationViews="clr-namespace:MedicationManager.UI.Views.Medications">
+    <DataTemplate DataType="{x:Type medications:MedicationControlViewModel}">
         <views:MedicationsControlView/>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type creator:MedicationCreatorViewModel}">
+    <DataTemplate DataType="{x:Type medications:MedicationCreatorViewModel}">
         <medicationViews:MedicationEditorView/>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type editor:MedicationEditorViewModel}">
+    <DataTemplate DataType="{x:Type medications:MedicationEditorViewModel}">
         <medicationViews:MedicationEditorView/>
     </DataTemplate>
 </ResourceDictionary>

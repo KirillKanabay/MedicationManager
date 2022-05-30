@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace MedicationManager.UI.Common.ViewModels
 {
@@ -14,15 +15,6 @@ namespace MedicationManager.UI.Common.ViewModels
                 _loaderVisibility = value;
                 OnPropertyChanged(nameof(_loaderVisibility));
             }
-        }
-
-        protected virtual async Task RunTask(Task task)
-        {
-            LoaderVisibility = true;
-            
-            await task;
-
-            LoaderVisibility = false;
         }
     }
 }

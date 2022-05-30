@@ -1,8 +1,8 @@
 ﻿using MedicationManager.UI.Common;
 using MedicationManager.UI.Common.Dialogs.DialogControl;
 using MedicationManager.UI.Common.Dialogs.Factories;
-using MedicationManager.UI.Core.ViewModels.Medications.Creator;
-using MedicationManager.UI.Core.ViewModels.Medications.Editor;
+using MedicationManager.UI.Core.Models;
+using MedicationManager.UI.Core.ViewModels.Medications;
 
 namespace MedicationManager.UI.Core.Factories
 {

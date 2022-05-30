@@ -1,6 +1,8 @@
-﻿namespace MedicationManager.UI.Core.Models
+﻿using MedicationManager.UI.Common.Models;
+
+namespace MedicationManager.UI.Core.Models
 {
-    public class MedicationSelectableItemModel
+    public class MedicationSelectableItemModel : BaseModel
     {
         public string Id { get; set; }
         public string Name { get; set; }

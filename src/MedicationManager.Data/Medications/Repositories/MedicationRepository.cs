@@ -49,5 +49,10 @@ namespace MedicationManager.Data.Medications.Repositories
 
             return ListAsync(query);
         }
+
+        public Task UpdateAsync(MedicationDocument document)
+        {
+            return base.UpdateOneAsync(document);
+        }
     }
 }
