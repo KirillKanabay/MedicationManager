@@ -29,7 +29,12 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
 
         public virtual TaskBasedCommand SaveItemCommand => new(SaveModel);
 
-        protected abstract Task SaveModel();
+        protected virtual Task SaveModel()
+        {
+            OnImportCompleted();
+
+            return Task.CompletedTask;
+        }
 
         protected virtual void OnImportCompleted()
         {

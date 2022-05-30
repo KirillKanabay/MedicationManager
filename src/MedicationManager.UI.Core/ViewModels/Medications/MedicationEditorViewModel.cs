@@ -27,7 +27,8 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
             await _medicationService.UpdateAsync(dto);
 
             _mapper.Map(Model, _originalModel);
-            OnImportCompleted();
+
+            await base.SaveModel();
         }
 
         public void Bind(MedicationModel model)
