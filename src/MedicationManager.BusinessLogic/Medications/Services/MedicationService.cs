@@ -19,11 +19,11 @@ namespace MedicationManager.BusinessLogic.Medications.Services
             _mapper = mapper;
         }
 
-        public async Task<List<MedicationListItemDto>> ListAllAsync()
+        public async Task<List<MedicationDto>> ListAllAsync()
         {
             var medications = await _medicationRepository.GetAllMedicationsAsync();
 
-            var dtos = _mapper.Map<List<MedicationListItemDto>>(medications);
+            var dtos = _mapper.Map<List<MedicationDto>>(medications);
 
             return dtos;
         }

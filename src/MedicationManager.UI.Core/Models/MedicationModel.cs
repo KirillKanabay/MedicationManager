@@ -2,15 +2,24 @@
 
 namespace MedicationManager.UI.Core.Models
 {
-    public class MedicationImportModel : BaseModel
+    public class MedicationModel : BaseModel
     {
+        private string _id;
         private string _name;
         private string _description;
         private string _manufacturer;
         private bool _receiptRequired;
         private decimal _price;
 
-        public string Id { get; set; }
+        public string Id
+        {
+            get => _id;
+            set
+            {
+                _id = value;
+                OnPropertyChanged(nameof(Id));
+            }
+        }
 
         public string Name
         {

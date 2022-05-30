@@ -21,6 +21,8 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
             var dto = _mapper.Map<MedicationDto>(Model);
 
             await _medicationService.AddAsync(dto);
+
+            OnImportCompleted();
         }
     }
 }

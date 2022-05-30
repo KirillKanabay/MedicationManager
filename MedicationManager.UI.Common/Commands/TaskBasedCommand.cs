@@ -12,7 +12,7 @@ namespace MedicationManager.UI.Common.Commands
             Callback = callback ?? throw new ArgumentNullException(nameof(callback));
         }
 
-        public TaskBasedCommand(TaskBasedCommand command) : base(command?.OnException)
+        public TaskBasedCommand(TaskBasedCommand command) : base(command.OnException)
         {
             if (command == null)
             {

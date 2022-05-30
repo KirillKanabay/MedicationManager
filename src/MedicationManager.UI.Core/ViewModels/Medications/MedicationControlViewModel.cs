@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -14,7 +15,7 @@ using MedicationManager.UI.Core.Models;
 
 namespace MedicationManager.UI.Core.ViewModels.Medications
 {
-    public class MedicationControlViewModel : BaseViewModel
+    public class MedicationControlViewModel : BaseViewModel, IImportObserverViewModel
     {
         private readonly MedicationDialogFactory _medicationDialogFactory;
         private readonly IMedicationService _medicationService;
@@ -43,8 +44,8 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
 
             var medicationViewModels = dtos.Select(dto =>
             {
-                var model = _mapper.Map<MedicationSelectableItemModel>(dto);
-                var viewModel = _viewModelLocator.Resolve<MedicationSelectableItemViewModel, MedicationSelectableItemModel>(model);
+                var model = _mapper.Map<MedicationModel>(dto);
+                var viewModel = _viewModelLocator.Resolve<MedicationSelectableItemViewModel, MedicationModel>(model);
 
                 return viewModel;
             }).ToList();
@@ -54,9 +55,14 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
 
         private async Task OpenCreatorDialog()
         {
-            var dialog = _medicationDialogFactory.CreateMedicationCreator();
+            var dialog = _medicationDialogFactory.CreateMedicationCreator(this);
 
             await DialogHost.Show(dialog, HostRoots.DialogRoot);
+        }
+
+        public async void ImportCompletedHandler(object sender, EventArgs e)
+        {
+            await GetMedications();
         }
     }
 }

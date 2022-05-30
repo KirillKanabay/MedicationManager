@@ -8,7 +8,9 @@ using MedicationManager.UI.Core.Models;
 
 namespace MedicationManager.UI.Core.ViewModels.Medications
 {
-    public class MedicationSelectableItemViewModel : BaseSelectableTableItemViewModel, IModelBasedViewModel<MedicationSelectableItemModel>
+    public class MedicationSelectableItemViewModel : BaseSelectableTableItemViewModel, 
+        IModelBasedViewModel<MedicationModel>
+
     {
         private readonly MedicationDialogFactory _medicationDialogFactory;
 
@@ -17,19 +19,19 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
             _medicationDialogFactory = medicationDialogFactory;
         }
         
-        public MedicationSelectableItemModel Model { get; private set; }
+        public MedicationModel Model { get; private set; }
 
         public override TaskBasedCommand RemoveItemCommand { get; }
         public override TaskBasedCommand EditItemCommand => new(OpenEditorDialog);
 
         private async Task OpenEditorDialog()
         {
-            var dialog = _medicationDialogFactory.CreateMedicationEditor(Model.Id);
+            var dialog = _medicationDialogFactory.CreateMedicationEditor(Model);
 
             await DialogHost.Show(dialog, HostRoots.DialogRoot);
         }
 
-        public void Bind(MedicationSelectableItemModel model)
+        public void Bind(MedicationModel model)
         {
             Model = model;
         }

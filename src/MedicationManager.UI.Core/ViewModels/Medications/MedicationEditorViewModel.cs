@@ -9,50 +9,32 @@ using MedicationManager.UI.Core.Models;
 
 namespace MedicationManager.UI.Core.ViewModels.Medications
 {
-    public class MedicationEditorViewModel : MedicationImportViewModelBase, IModelBasedViewModel<MedicationImportModel>
+    public class MedicationEditorViewModel : MedicationImportViewModelBase, IModelBasedViewModel<MedicationModel>
     {
         private readonly IMedicationService _medicationService;
         private readonly IMapper _mapper;
+        private MedicationModel _originalModel;
 
         public MedicationEditorViewModel(IMedicationService medicationService, IMapper mapper)
         {
             _medicationService = medicationService;
             _mapper = mapper;
         }
-
-        public string Id { get; set; }
-
-        public TaskBasedCommand OnLoadedCommand => new(GetModel);
-
-        private async Task GetModel()
-        {
-            if (Id == null)
-            {
-                throw new ArgumentNullException();
-            }
-
-            var dto = await _medicationService.GetByIdAsync(Id);
-
-            if (dto == null)
-            {
-                throw new NullReferenceException($"Медикамент с Id:{Id} не найден");
-            }
-
-            var model = _mapper.Map<MedicationImportModel>(dto);
-            model.Id = Id;
-
-            Bind(model);
-        }
-
+        
         protected override async Task SaveModel()
         {
             var dto = _mapper.Map<MedicationDto>(Model);
             await _medicationService.UpdateAsync(dto);
+
+            _mapper.Map(Model, _originalModel);
+            OnImportCompleted();
         }
 
-        public void Bind(MedicationImportModel model)
+        public void Bind(MedicationModel model)
         {
-            Model = model;
+            _originalModel = model;
+            
+            Model = _mapper.Map<MedicationModel>(model);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace MedicationManager.UI.Common.Commands
         protected readonly Action<Exception> OnException;
         private bool _isExecuting;
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged;
 
         public bool IsExecuting
         {

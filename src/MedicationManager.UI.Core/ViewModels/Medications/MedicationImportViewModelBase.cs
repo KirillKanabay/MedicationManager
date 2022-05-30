@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using MedicationManager.UI.Common.Commands;
 using MedicationManager.UI.Common.ViewModels;
 using MedicationManager.UI.Core.Models;
@@ -7,14 +8,16 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
 {
     public abstract class MedicationImportViewModelBase : BaseInteractionViewModel
     {
-        private MedicationImportModel _model;
+        private MedicationModel _model;
+
+        public event EventHandler ImportCompleted;
 
         protected MedicationImportViewModelBase()
         {
-            _model = new MedicationImportModel();
+            _model = new MedicationModel();
         }
 
-        public MedicationImportModel Model
+        public MedicationModel Model
         {
             get => _model;
             set
@@ -27,5 +30,10 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
         public virtual TaskBasedCommand SaveItemCommand => new(SaveModel);
 
         protected abstract Task SaveModel();
+
+        protected virtual void OnImportCompleted()
+        {
+            ImportCompleted?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

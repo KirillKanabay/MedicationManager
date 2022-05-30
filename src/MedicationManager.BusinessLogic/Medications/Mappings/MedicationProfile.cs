@@ -11,7 +11,6 @@ namespace MedicationManager.BusinessLogic.Medications.Mappings
         public MedicationProfile()
         {
             CreateMap<MedicationDocument, MedicationDto>().ReverseMap();
-            CreateMap<MedicationDocument, MedicationListItemDto>();
             CreateMap<DocumentBase, BaseDto>();
         }
     }
