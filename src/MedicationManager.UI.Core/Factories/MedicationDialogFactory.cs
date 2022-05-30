@@ -25,8 +25,8 @@ namespace MedicationManager.UI.Core.Factories
         public DialogControlView CreateMedicationEditor(string id)
         {
             var vm = _viewModelLocator.Resolve<MedicationEditorViewModel>();
-            
-            vm.Id = id;
+
+            vm.Id = id; 
 
             return CreateDialogControlView(vm);
         }

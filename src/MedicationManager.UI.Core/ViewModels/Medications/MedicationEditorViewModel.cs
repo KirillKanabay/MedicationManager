@@ -9,7 +9,7 @@ using MedicationManager.UI.Core.Models;
 
 namespace MedicationManager.UI.Core.ViewModels.Medications
 {
-    public class MedicationEditorViewModel : BaseInteractionViewModel, IModelBasedViewModel<MedicationImportModel>
+    public class MedicationEditorViewModel : MedicationImportViewModelBase, IModelBasedViewModel<MedicationImportModel>
     {
         private readonly IMedicationService _medicationService;
         private readonly IMapper _mapper;
@@ -22,19 +22,7 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
 
         public string Id { get; set; }
 
-        private MedicationImportModel _model;
-        public MedicationImportModel Model
-        {
-            get => _model;
-            set
-            {
-                _model = value;
-                OnPropertyChanged(nameof(Model));
-            }
-        }
-
         public TaskBasedCommand OnLoadedCommand => new(GetModel);
-        public TaskBasedCommand SaveItemCommand => new(SaveModel);
 
         private async Task GetModel()
         {
@@ -43,7 +31,7 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
                 throw new ArgumentNullException();
             }
 
-            var dto = await _medicationService.GetById(Id);
+            var dto = await _medicationService.GetByIdAsync(Id);
 
             if (dto == null)
             {
@@ -56,10 +44,10 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
             Bind(model);
         }
 
-        private async Task SaveModel()
+        protected override async Task SaveModel()
         {
-            var dto = _mapper.Map<MedicationDto>(_model);
-            await _medicationService.Update(dto);
+            var dto = _mapper.Map<MedicationDto>(Model);
+            await _medicationService.UpdateAsync(dto);
         }
 
         public void Bind(MedicationImportModel model)

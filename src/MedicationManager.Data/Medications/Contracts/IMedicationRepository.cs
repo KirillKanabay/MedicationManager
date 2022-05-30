@@ -7,9 +7,10 @@ namespace MedicationManager.Data.Medications.Contracts
 {
     public interface IMedicationRepository
     {
-        public Task<List<MedicationDocument>> GetAllMedicationsAsync();
-        public Task<List<MedicationDocument>> GetMedicationsAsync(MedicationFilter filter);
-        public Task<MedicationDocument> GetByIdAsync(string id);
-        public Task UpdateAsync(MedicationDocument document);
+        Task<List<MedicationDocument>> GetAllMedicationsAsync();
+        Task<List<MedicationDocument>> GetMedicationsAsync(MedicationFilter filter);
+        Task<MedicationDocument> GetByIdAsync(string id);
+        Task UpdateAsync(MedicationDocument document);
+        Task AddAsync(MedicationDocument document);
     }
 }

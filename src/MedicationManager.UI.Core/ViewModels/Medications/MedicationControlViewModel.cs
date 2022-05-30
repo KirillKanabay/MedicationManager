@@ -2,26 +2,31 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using MaterialDesignThemes.Wpf;
 using MedicationManager.BusinessLogic.Medications.Contracts;
 using MedicationManager.Common.Extensions;
 using MedicationManager.UI.Common;
 using MedicationManager.UI.Common.Commands;
+using MedicationManager.UI.Common.Immutable;
 using MedicationManager.UI.Common.ViewModels;
+using MedicationManager.UI.Core.Factories;
 using MedicationManager.UI.Core.Models;
 
 namespace MedicationManager.UI.Core.ViewModels.Medications
 {
     public class MedicationControlViewModel : BaseViewModel
     {
+        private readonly MedicationDialogFactory _medicationDialogFactory;
         private readonly IMedicationService _medicationService;
         private readonly IMapper _mapper;
         private readonly ViewModelLocator _viewModelLocator;
 
-        public MedicationControlViewModel(IMedicationService medicationService, IMapper mapper, ViewModelLocator viewModelLocator)
+        public MedicationControlViewModel(IMedicationService medicationService, IMapper mapper, ViewModelLocator viewModelLocator, MedicationDialogFactory medicationDialogFactory)
         {
             _medicationService = medicationService;
             _mapper = mapper;
             _viewModelLocator = viewModelLocator;
+            _medicationDialogFactory = medicationDialogFactory;
 
             Medications = new ObservableCollection<MedicationSelectableItemViewModel>();
         }
@@ -30,10 +35,11 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
 
         public TaskBasedCommand OnLoadCommand => new(GetMedications);
         public TaskBasedCommand GetItemsCollection => new(GetMedications);
-
+        public TaskBasedCommand OpenCreatorDialogCommand => new(OpenCreatorDialog);
+        
         private async Task GetMedications()
         {
-            var dtos = await _medicationService.ListAll();
+            var dtos = await _medicationService.ListAllAsync();
 
             var medicationViewModels = dtos.Select(dto =>
             {
@@ -44,6 +50,13 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
             }).ToList();
 
             Medications.Assign(medicationViewModels);
+        }
+
+        private async Task OpenCreatorDialog()
+        {
+            var dialog = _medicationDialogFactory.CreateMedicationCreator();
+
+            await DialogHost.Show(dialog, HostRoots.DialogRoot);
         }
     }
 }

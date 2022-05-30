@@ -19,7 +19,7 @@ namespace MedicationManager.BusinessLogic.Medications.Services
             _mapper = mapper;
         }
 
-        public async Task<List<MedicationListItemDto>> ListAll()
+        public async Task<List<MedicationListItemDto>> ListAllAsync()
         {
             var medications = await _medicationRepository.GetAllMedicationsAsync();
 
@@ -28,7 +28,7 @@ namespace MedicationManager.BusinessLogic.Medications.Services
             return dtos;
         }
 
-        public async Task<MedicationDto> GetById(string id)
+        public async Task<MedicationDto> GetByIdAsync(string id)
         {
             var medication = await _medicationRepository.GetByIdAsync(id);
 
@@ -37,11 +37,18 @@ namespace MedicationManager.BusinessLogic.Medications.Services
             return dto;
         }
 
-        public async Task Update(MedicationDto dto)
+        public async Task UpdateAsync(MedicationDto dto)
         {
             var medication = _mapper.Map<MedicationDocument>(dto);
 
             await _medicationRepository.UpdateAsync(medication);
+        }
+
+        public async Task AddAsync(MedicationDto dto)
+        {
+            var medication = _mapper.Map<MedicationDocument>(dto);
+
+            await _medicationRepository.AddAsync(medication);
         }
     }
 }

@@ -56,7 +56,7 @@
                 Grid.Row="0"
                 Width="180"
                 HorizontalAlignment="Left"
-                Command="{Binding OpenEditorDialog}"
+                Command="{Binding OpenCreatorDialogCommand}"
                 Content="Добавить медикамент"
                 Cursor="Hand" />
             <Border

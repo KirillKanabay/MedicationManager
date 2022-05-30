@@ -54,5 +54,10 @@ namespace MedicationManager.Data.Medications.Repositories
         {
             return base.UpdateOneAsync(document);
         }
+
+        public Task AddAsync(MedicationDocument document)
+        {
+            return base.InsertAsync(document);
+        }
     }
 }
