@@ -60,7 +60,7 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
             await DialogHost.Show(dialog, HostRoots.DialogRoot);
         }
 
-        public async void ImportCompletedHandler(object sender, EventArgs e)
+        public async void ImportCompletedHandler(object? sender, EventArgs e)
         {
             await GetMedications();
         }
