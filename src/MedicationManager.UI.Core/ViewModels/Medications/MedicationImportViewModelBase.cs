@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows;
+using MaterialDesignThemes.Wpf;
 using MedicationManager.UI.Common.Commands;
+using MedicationManager.UI.Common.Immutable;
 using MedicationManager.UI.Common.ViewModels;
 using MedicationManager.UI.Core.Models;
 
@@ -37,7 +39,9 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
             OnImportCompleted();
 
             LoaderVisibility = Visibility.Collapsed;
-            
+
+            DialogHost.Close(HostRoots.DialogRoot);
+
             return Task.CompletedTask;
         }
 
