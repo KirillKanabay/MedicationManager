@@ -12,5 +12,6 @@ namespace MedicationManager.Data.Medications.Contracts
         Task<MedicationDocument> GetByIdAsync(string id);
         Task UpdateAsync(MedicationDocument document);
         Task AddAsync(MedicationDocument document);
+        Task DeleteAsync(string id);
     }
 }

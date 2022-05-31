@@ -71,5 +71,10 @@ namespace MedicationManager.BusinessLogic.Medications.Services
 
             await _medicationRepository.AddAsync(medication);
         }
+
+        public async Task DeleteAsync(string id)
+        {
+            await _medicationRepository.DeleteAsync(id);
+        }
     }
 }

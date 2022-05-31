@@ -6,7 +6,7 @@ namespace MedicationManager.UI.Common.ViewModels
     {
         private bool _isSelected;
         
-        public abstract TaskBasedCommand RemoveItemCommand { get; }
+        public abstract TaskBasedCommand DeleteItemCommand { get; }
         public abstract TaskBasedCommand EditItemCommand { get; }
 
         public virtual bool IsSelected

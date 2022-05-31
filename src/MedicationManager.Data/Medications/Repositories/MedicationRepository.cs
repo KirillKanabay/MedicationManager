@@ -23,7 +23,7 @@ namespace MedicationManager.Data.Medications.Repositories
 
         public Task<List<MedicationDocument>> GetAllMedicationsAsync()
         {
-            return ListAllAsync();
+            return base.ListAllAsync();
         }
 
         public Task<List<MedicationDocument>> GetMedicationsAsync(MedicationFilter filter)
@@ -60,6 +60,11 @@ namespace MedicationManager.Data.Medications.Repositories
         public Task AddAsync(MedicationDocument document)
         {
             return base.InsertAsync(document);
+        }
+
+        public Task DeleteAsync(string id)
+        {
+            return base.RemoveAsync(id);
         }
     }
 }

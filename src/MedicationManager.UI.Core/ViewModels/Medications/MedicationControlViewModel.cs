@@ -41,18 +41,17 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
         public TaskBasedCommand GetItemsCollection => new(GetMedications);
         public TaskBasedCommand OpenCreatorDialogCommand => new(OpenCreatorDialog);
         public TaskBasedCommand FilterItemsCommand => new(FilterMedications);
+
+        public async void ImportCompletedHandler(object? sender, EventArgs e)
+        {
+            await GetMedications();
+        }
         
         private async Task GetMedications()
         {
             var dtos = await _medicationService.ListAllAsync();
 
-            var medicationViewModels = dtos.Select(dto =>
-            {
-                var model = _mapper.Map<MedicationModel>(dto);
-                var viewModel = _viewModelLocator.Resolve<MedicationSelectableItemViewModel, MedicationModel>(model);
-
-                return viewModel;
-            }).ToList();
+            var medicationViewModels = dtos.Select(CreateItemViewModel).ToList();
 
             Medications.Assign(medicationViewModels);
         }
@@ -81,7 +80,17 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
             await DialogHost.Show(dialog, HostRoots.DialogRoot);
         }
 
-        public async void ImportCompletedHandler(object? sender, EventArgs e)
+        private MedicationSelectableItemViewModel CreateItemViewModel(MedicationDto dto)
+        {
+            var model = _mapper.Map<MedicationModel>(dto);
+            var viewModel = _viewModelLocator.Resolve<MedicationSelectableItemViewModel, MedicationModel>(model);
+
+            viewModel.DeletionCompleted += ItemDeletedHandler;
+            
+            return viewModel;
+        }
+
+        private async void ItemDeletedHandler(object? sender, EventArgs e)
         {
             await GetMedications();
         }

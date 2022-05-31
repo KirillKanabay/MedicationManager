@@ -141,7 +141,7 @@
                     <DataGridTemplateColumn Header="Удалить">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding RemoveItemCommand}" Style="{StaticResource TransparentButton}">
+                                <Button Command="{Binding DeleteItemCommand}" Style="{StaticResource TransparentButton}">
                                     <materialDesign:PackIcon
                                         Width="18"
                                         Height="18"

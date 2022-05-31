@@ -22,7 +22,7 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
 
             await _medicationService.AddAsync(dto);
 
-            OnImportCompleted();
+            await base.SaveModel();
         }
     }
 }

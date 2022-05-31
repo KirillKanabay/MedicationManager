@@ -12,6 +12,7 @@
         FontFamily="Google Sans"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
+        x:Name="Window"
         mc:Ignorable="d"
         Title="MainWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -60,7 +61,7 @@
                         HorizontalAlignment="Right"
                         materialDesign:RippleAssist.IsCentered="True"
                         materialDesign:RippleAssist.RippleSizeMultiplier="0.7"
-                        Command="{Binding CloseWindow}"
+                        Command="{Binding CloseWindowCommand}"
                         CommandParameter="{Binding ElementName=Window}"
                         Cursor="Hand"
                         Style="{StaticResource HoverCloseButton}"
@@ -79,7 +80,7 @@
                         HorizontalAlignment="Right"
                         materialDesign:RippleAssist.IsCentered="True"
                         materialDesign:RippleAssist.RippleSizeMultiplier="0.7"
-                        Command="{Binding MinimizeWindow}"
+                        Command="{Binding MinimizeWindowCommand}"
                         CommandParameter="{Binding ElementName=Window}"
                         Cursor="Hand"
                         Style="{StaticResource HoverMinimizeButton}"
@@ -99,7 +100,6 @@
                             Margin="3,0,0,0"
                             VerticalAlignment="Center"
                             FontSize="15"
-                            FontWeight="Bold"
                             Foreground="#2196f3"
                             Text="{Binding Title}">
                         </TextBlock>

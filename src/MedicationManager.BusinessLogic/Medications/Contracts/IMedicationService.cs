@@ -11,5 +11,6 @@ namespace MedicationManager.BusinessLogic.Medications.Contracts
         Task<MedicationDto> GetByIdAsync(string id);
         Task UpdateAsync(MedicationDto dto);
         Task AddAsync(MedicationDto dto);
+        Task DeleteAsync(string id);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using MaterialDesignExtensions.Controls;
 using MaterialDesignExtensions.Model;
 using MedicationManager.UI.Common.Commands;
@@ -60,6 +61,16 @@ namespace MedicationManager.UI.Core.ViewModels
         {
             _currentViewModelName = _defaultMenuItem;
             CurrentViewModel = _mainMenuViewModel.NavigationViewModels[_defaultMenuItem];
+        });
+
+        public DelegateCommand<Window> CloseWindowCommand => new(_ =>
+        {
+            _.Close();
+        });
+
+        public DelegateCommand<Window> MinimizeWindowCommand => new(_ =>
+        {
+            _.WindowState = WindowState.Minimized;
         });
     }
 }

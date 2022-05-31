@@ -80,7 +80,7 @@
                     </TextBox.Text>
                 </TextBox>
                 <!-- Description -->
-                <TextBox Margin="0,8,0,20" Style="{StaticResource InputTextBox}" Height="104">
+                <TextBox Margin="0,8,0,20" Style="{StaticResource InputTextBox}" TextWrapping="Wrap">
                     <materialDesign:HintAssist.Hint>
                         <TextBlock>Описание</TextBlock>
                     </materialDesign:HintAssist.Hint>

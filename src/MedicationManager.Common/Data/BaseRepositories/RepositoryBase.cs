@@ -46,7 +46,7 @@ namespace MedicationManager.Common.Data.BaseRepositories
 
         public virtual Task<List<TDocument>> ListAllAsync()
         {
-            return Collection.Find(p => true).ToListAsync();
+            return GetQuery().ToListAsync();
         }
 
         public virtual Task<List<TDocument>> ListAsync(IMongoQueryable<TDocument> query)
@@ -70,7 +70,7 @@ namespace MedicationManager.Common.Data.BaseRepositories
         {
             var filter = Builders<TDocument>.Filter.Eq(document => document.Id, id);
             
-            await Collection.DeleteOneAsync(filter);
+            await Collection.UpdateOneAsync(filter, Builders<TDocument>.Update.Set(x => x.IsDeleted, true));
         }
 
         public virtual async Task RemoveManyAsync(FilterDefinition<TDocument> filter)
@@ -78,9 +78,16 @@ namespace MedicationManager.Common.Data.BaseRepositories
             await Collection.DeleteManyAsync(filter);
         }
 
-        protected virtual IMongoQueryable<TDocument> GetQuery()
+        protected virtual IMongoQueryable<TDocument> GetQuery(bool includeDeletedDocuments = false)
         {
-            return Collection.AsQueryable(new AggregateOptions {AllowDiskUse = true});
+            var query = Collection.AsQueryable(new AggregateOptions {AllowDiskUse = true});
+
+            if (!includeDeletedDocuments)
+            {
+                query = query.Where(x => !x.IsDeleted);
+            }
+
+            return query;
         }
     }
 }
