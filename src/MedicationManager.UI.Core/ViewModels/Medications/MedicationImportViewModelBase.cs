@@ -17,6 +17,8 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
             _model = new MedicationModel();
         }
 
+        public abstract string Title { get; }
+
         public MedicationModel Model
         {
             get => _model;

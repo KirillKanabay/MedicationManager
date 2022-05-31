@@ -20,7 +20,9 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
             _medicationService = medicationService;
             _mapper = mapper;
         }
-        
+
+        public override string Title => "Редактирование медикамента";
+
         protected override async Task SaveModel()
         {
             var dto = _mapper.Map<MedicationDto>(Model);

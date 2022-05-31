@@ -16,6 +16,8 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
             _mapper = mapper;
         }
 
+        public override string Title => "Создание медикамента";
+
         protected override async Task SaveModel()
         {
             var dto = _mapper.Map<MedicationDto>(Model);
