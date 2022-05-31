@@ -170,7 +170,7 @@
                             ActionButtonPlacement="Inline"
                             ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionMidButton}"
                             IsActive="False"
-                            MessageQueue="{materialDesign:MessageQueue}">
+                            MessageQueue="{Binding MessageQueue}">
                             <materialDesign:SnackbarMessage ActionCommand="Close" ActionContent="Закрыть" />
                         </materialDesign:Snackbar>
                     </Grid>

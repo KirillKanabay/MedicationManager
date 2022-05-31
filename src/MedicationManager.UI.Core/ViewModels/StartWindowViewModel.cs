@@ -2,6 +2,7 @@
 using System.Windows;
 using MaterialDesignExtensions.Controls;
 using MaterialDesignExtensions.Model;
+using MaterialDesignThemes.Wpf;
 using MedicationManager.UI.Common.Commands;
 using MedicationManager.UI.Common.Immutable;
 using MedicationManager.UI.Common.ViewModels;
@@ -18,13 +19,18 @@ namespace MedicationManager.UI.Core.ViewModels
         private BaseViewModel _currentViewModel;
         private string _currentViewModelName;
 
-        public StartWindowViewModel(MainMenuViewModel mainMenuViewModel, MedicationControlViewModel medicationPageViewModel)
+        public StartWindowViewModel(MainMenuViewModel mainMenuViewModel, 
+            MedicationControlViewModel medicationPageViewModel,
+            ISnackbarMessageQueue messageQueue)
         {
             MainMenuViewModel = mainMenuViewModel ?? throw new ArgumentNullException(nameof(mainMenuViewModel));
-            CurrentViewModel = medicationPageViewModel;
+            CurrentViewModel = medicationPageViewModel ?? throw new ArgumentNullException(nameof(medicationPageViewModel));
+            MessageQueue = messageQueue ?? throw new ArgumentNullException(nameof(messageQueue));
         }
 
         public string Title => "Управление медикаментами";
+
+        public ISnackbarMessageQueue MessageQueue { get; }
 
         public BaseViewModel CurrentViewModel
         {

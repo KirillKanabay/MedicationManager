@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using MaterialDesignThemes.Wpf;
 using MedicationManager.UI.Common;
 using MedicationManager.UI.Core.Factories;
 using MedicationManager.UI.IoC;
@@ -22,6 +23,7 @@ namespace MedicationManager.UI
 
             services.AddSingleton<ViewModelLocator>();
             services.AddSingleton<MedicationDialogFactory>();
+            services.AddSingleton<ISnackbarMessageQueue, SnackbarMessageQueue>();
 
             services.RegisterDatabase(_configuration);
             services.RegisterRepositories();

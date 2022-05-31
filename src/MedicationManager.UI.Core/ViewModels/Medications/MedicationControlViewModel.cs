@@ -23,7 +23,12 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
         private readonly IMapper _mapper;
         private readonly ViewModelLocator _viewModelLocator;
 
-        public MedicationControlViewModel(IMedicationService medicationService, IMapper mapper, ViewModelLocator viewModelLocator, MedicationDialogFactory medicationDialogFactory)
+        public MedicationControlViewModel(
+            IMedicationService medicationService, 
+            IMapper mapper, 
+            ViewModelLocator viewModelLocator, 
+            MedicationDialogFactory medicationDialogFactory,
+            ISnackbarMessageQueue messageQueue)
         {
             _medicationService = medicationService;
             _mapper = mapper;
@@ -32,10 +37,12 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
 
             Medications = new ObservableCollection<MedicationSelectableItemViewModel>();
             Filter = new MedicationFilterModel();
+            MessageQueue = messageQueue;
         }
 
         public ObservableCollection<MedicationSelectableItemViewModel> Medications { get; }
         public MedicationFilterModel Filter { get; }
+        public ISnackbarMessageQueue MessageQueue { get; }
 
         public TaskBasedCommand OnLoadCommand => new(GetMedications);
         public TaskBasedCommand GetItemsCollection => new(GetMedications);
@@ -93,6 +100,8 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
         private async void ItemDeletedHandler(object? sender, EventArgs e)
         {
             await GetMedications();
+
+            MessageQueue.Enqueue(SnackbarConstants.MedicationDeletedMessage, SnackbarConstants.CloseSnackbarName, () => {});
         }
     }
 }
