@@ -1,13 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Windows;
 
 namespace MedicationManager.UI.Common.ViewModels
 {
     public abstract class BaseInteractionViewModel : BaseViewModel
     {
-        private bool _loaderVisibility;
+        private Visibility _loaderVisibility = Visibility.Collapsed;
 
-        public bool LoaderVisibility
+        public Visibility LoaderVisibility
         {
             get => _loaderVisibility;
             set

@@ -147,7 +147,7 @@
                     VerticalAlignment="Center"
                     IsIndeterminate="True"
                     Style="{StaticResource MaterialDesignCircularProgressBar}"
-                    Visibility="{Binding ProgressBarVisibility}"
+                    Visibility="{Binding LoaderVisibility}"
                     Value="0" />
                 <Button
                     Margin="0,0,5,10"

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows;
 using AutoMapper;
 using MedicationManager.BusinessLogic.Medications.Contracts;
 using MedicationManager.BusinessLogic.Medications.Dtos;
@@ -25,6 +26,8 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
 
         protected override async Task SaveModel()
         {
+            LoaderVisibility = Visibility.Visible;
+
             var dto = _mapper.Map<MedicationDto>(Model);
             await _medicationService.UpdateAsync(dto);
 
