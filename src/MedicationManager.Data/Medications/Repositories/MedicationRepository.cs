@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MedicationManager.Common.Data.BaseRepositories;
@@ -29,11 +30,12 @@ namespace MedicationManager.Data.Medications.Repositories
         {
             var query = GetQuery();
 
-            if (filter.Name.IsPresent())
+            if (!filter.Name.IsNullOrWhitespace())
             {
                 if (filter.Name.Count == 1)
                 {
-                    var regex = new Regex($"^{filter.Name}", RegexOptions.IgnoreCase);
+                    var medicationName = filter.Name.First();
+                    var regex = new Regex($"^.*{medicationName}.*", RegexOptions.IgnoreCase);
                     query = query.Where(x => regex.IsMatch(x.Name));
                 }
                 else

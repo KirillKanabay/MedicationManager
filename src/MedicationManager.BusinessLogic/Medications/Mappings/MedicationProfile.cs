@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using MedicationManager.BusinessLogic.Medications.Dtos;
-using MedicationManager.Common.BusinessLogic;
-using MedicationManager.Common.Data.Documents;
 using MedicationManager.Data.Medications.Documents;
+using MedicationManager.Data.Medications.Filters;
 
 namespace MedicationManager.BusinessLogic.Medications.Mappings
 {
@@ -11,7 +10,8 @@ namespace MedicationManager.BusinessLogic.Medications.Mappings
         public MedicationProfile()
         {
             CreateMap<MedicationDocument, MedicationDto>().ReverseMap();
-            CreateMap<DocumentBase, BaseDto>();
+
+            CreateMap<MedicationFilterDto, MedicationFilter>().ReverseMap();
         }
     }
 }

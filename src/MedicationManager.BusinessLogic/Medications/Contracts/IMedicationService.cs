@@ -6,6 +6,7 @@ namespace MedicationManager.BusinessLogic.Medications.Contracts
 {
     public interface IMedicationService
     {
+        Task<List<MedicationDto>> ListAsync(MedicationFilterDto filter);
         Task<List<MedicationDto>> ListAllAsync();
         Task<MedicationDto> GetByIdAsync(string id);
         Task UpdateAsync(MedicationDto dto);

@@ -9,5 +9,10 @@ namespace MedicationManager.Common.Extensions
         {
             return enumerable?.Any() ?? false;
         }
+
+        public static bool IsNullOrWhitespace(this IEnumerable<string> enumerable)
+        {
+            return enumerable?.All(x => x.IsNullOrWhitespace()) ?? true;
+        }
     }
 }

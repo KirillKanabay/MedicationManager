@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using MedicationManager.BusinessLogic.Medications.Contracts;
 using MedicationManager.BusinessLogic.Medications.Dtos;
 using MedicationManager.Data.Medications.Contracts;
 using MedicationManager.Data.Medications.Documents;
+using MedicationManager.Data.Medications.Filters;
 
 namespace MedicationManager.BusinessLogic.Medications.Services
 {
@@ -17,6 +19,25 @@ namespace MedicationManager.BusinessLogic.Medications.Services
         {
             _medicationRepository = medicationRepository;
             _mapper = mapper;
+        }
+
+        public async Task<List<MedicationDto>> ListAsync(MedicationFilterDto filter)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            var documentFilter = new MedicationFilter
+            {
+                Name = new List<string> {filter.Name}
+            };
+
+            var medications = await _medicationRepository.GetMedicationsAsync(documentFilter);
+
+            var dtos = _mapper.Map<List<MedicationDto>>(medications);
+
+            return dtos;
         }
 
         public async Task<List<MedicationDto>> ListAllAsync()

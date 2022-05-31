@@ -10,6 +10,8 @@ namespace MedicationManager.UI.Core.Mappings
         {
             CreateMap<MedicationDto, MedicationModel>().ReverseMap();
             CreateMap<MedicationModel, MedicationModel>().ReverseMap();
+
+            CreateMap<MedicationFilterModel, MedicationFilterDto>().ReverseMap();
         }
     }
 }

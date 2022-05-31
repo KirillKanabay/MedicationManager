@@ -78,7 +78,7 @@
                         x:Name="SearchButton"
                         Width="24"
                         Height="24"
-                        Command="{Binding SearchCommand}"
+                        Command="{Binding FilterItemsCommand}"
                         CommandParameter="{Binding ElementName=SearchBox, Path=Text}"
                         Style="{DynamicResource MaterialDesignToolButton}">
                         <materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
@@ -89,10 +89,14 @@
                         MinWidth="200"
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
-                        materialDesign:HintAssist.Hint="Поиск"
+                        materialDesign:HintAssist.Hint="Введите название медикамента"
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                         BorderThickness="0"
-                        Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding Filter.Name, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding Path=FilterItemsCommand}" Key="Enter" />
+                        </TextBox.InputBindings>
+                    </TextBox>
                 </Grid>
             </Border>
             <DataGrid
