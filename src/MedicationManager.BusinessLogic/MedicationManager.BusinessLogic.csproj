@@ -13,4 +13,9 @@
     <ProjectReference Include="..\MedicationManager.Data\MedicationManager.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Providers\Contracts\" />
+    <Folder Include="Providers\Services\" />
+  </ItemGroup>
+
 </Project>

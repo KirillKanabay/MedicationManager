@@ -8,6 +8,6 @@ namespace MedicationManager.Data.Providers.Documents
         public string CompanyName { get; set; }
         public string Director { get; set; }
         public string Address { get; set; }
-        public List<string> AvailableMedications { get; set; }
+        public List<ProviderProductDocument> Products { get; set; }
     }
 }
