@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:MedicationManager.UI.Views.Medications"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:behaviors="clr-namespace:MedicationManager.UI.Common.Behaviors;assembly=MedicationManager.UI.Common"
              d:DesignHeight="450"
     d:DesignWidth="800"
     Background="#FFFAFAFA"
@@ -127,7 +128,8 @@
                         <Binding
                             Mode="TwoWay"
                             Path="Model.Price"
-                            UpdateSourceTrigger="PropertyChanged">
+                            UpdateSourceTrigger="PropertyChanged"
+                            Delay="1000">
                             <Binding.ValidationRules>
                                 <DataErrorValidationRule />
                             </Binding.ValidationRules>

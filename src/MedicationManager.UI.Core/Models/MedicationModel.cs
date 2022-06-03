@@ -1,8 +1,10 @@
-﻿using MedicationManager.UI.Common.Models;
+﻿using FluentValidation;
+using MedicationManager.UI.Common.Models;
+using MedicationManager.UI.Core.Validators;
 
 namespace MedicationManager.UI.Core.Models
 {
-    public class MedicationModel : BaseModel
+    public class MedicationModel : BaseValidatableModel
     {
         private string _id;
         private string _name;
@@ -10,6 +12,11 @@ namespace MedicationManager.UI.Core.Models
         private string _manufacturer;
         private bool _receiptRequired;
         private decimal _price;
+        protected override IValidationContext ValidationContext => new ValidationContext<MedicationModel>(this);
+
+        public MedicationModel() : base(new MedicationModelValidator())
+        {
+        }
 
         public string Id
         {
