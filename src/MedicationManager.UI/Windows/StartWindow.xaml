@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MedicationManager.UI.Windows"
+        xmlns:immutable="clr-namespace:MedicationManager.UI.Common.Immutable;assembly=MedicationManager.UI.Common"
         Width="1200"
         Height="700"
         AllowsTransparency="True"
@@ -11,6 +12,7 @@
         FontFamily="Google Sans"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
+        x:Name="Window"
         mc:Ignorable="d"
         Title="MainWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -29,7 +31,7 @@
     </Window.Resources>
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">
-            <b:InvokeCommandAction Command="{Binding LoadedCommand}" />
+            <b:InvokeCommandAction Command="{Binding OnLoadedCommand}" />
         </b:EventTrigger>
     </b:Interaction.Triggers>
     <materialDesign:Card
@@ -59,7 +61,7 @@
                         HorizontalAlignment="Right"
                         materialDesign:RippleAssist.IsCentered="True"
                         materialDesign:RippleAssist.RippleSizeMultiplier="0.7"
-                        Command="{Binding CloseWindow}"
+                        Command="{Binding CloseWindowCommand}"
                         CommandParameter="{Binding ElementName=Window}"
                         Cursor="Hand"
                         Style="{StaticResource HoverCloseButton}"
@@ -78,7 +80,7 @@
                         HorizontalAlignment="Right"
                         materialDesign:RippleAssist.IsCentered="True"
                         materialDesign:RippleAssist.RippleSizeMultiplier="0.7"
-                        Command="{Binding MinimizeWindow}"
+                        Command="{Binding MinimizeWindowCommand}"
                         CommandParameter="{Binding ElementName=Window}"
                         Cursor="Hand"
                         Style="{StaticResource HoverMinimizeButton}"
@@ -97,8 +99,8 @@
                         <TextBlock
                             Margin="3,0,0,0"
                             VerticalAlignment="Center"
-                            FontSize="15"
-                            FontWeight="Bold"
+                            FontSize="14"
+                            FontWeight="Medium"
                             Foreground="#2196f3"
                             Text="{Binding Title}">
                         </TextBlock>
@@ -112,7 +114,7 @@
                 x:Name="DialogHost"
                 Grid.Row="1"
                 CloseOnClickAway="True"
-                Identifier="RootDialog">
+                Identifier="{x:Static immutable:HostRoots.DialogRoot}">
                 <materialDesign:DrawerHost x:Name="DrawerHost">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -169,7 +171,7 @@
                             ActionButtonPlacement="Inline"
                             ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionMidButton}"
                             IsActive="False"
-                            MessageQueue="{materialDesign:MessageQueue}">
+                            MessageQueue="{Binding MessageQueue}">
                             <materialDesign:SnackbarMessage ActionCommand="Close" ActionContent="Закрыть" />
                         </materialDesign:Snackbar>
                     </Grid>

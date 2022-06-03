@@ -15,6 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicationManager.UI", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicationManager.UI.Core", "src\MedicationManager.UI.Core\MedicationManager.UI.Core.csproj", "{99AEFE92-34A8-48A4-9D54-375CACE8B4DA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{84C439F0-986B-4029-9B04-21A3AECAC8AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicationManager.UI.Common", "MedicationManager.UI.Common\MedicationManager.UI.Common.csproj", "{5A0334E7-4AF6-446C-9A6E-BEBE87CE8510}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,9 +49,18 @@ Global
 		{99AEFE92-34A8-48A4-9D54-375CACE8B4DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99AEFE92-34A8-48A4-9D54-375CACE8B4DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99AEFE92-34A8-48A4-9D54-375CACE8B4DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A0334E7-4AF6-446C-9A6E-BEBE87CE8510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A0334E7-4AF6-446C-9A6E-BEBE87CE8510}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A0334E7-4AF6-446C-9A6E-BEBE87CE8510}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A0334E7-4AF6-446C-9A6E-BEBE87CE8510}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{379D83BB-1862-4115-880E-D4A2EDC8E4EF} = {84C439F0-986B-4029-9B04-21A3AECAC8AF}
+		{99AEFE92-34A8-48A4-9D54-375CACE8B4DA} = {84C439F0-986B-4029-9B04-21A3AECAC8AF}
+		{5A0334E7-4AF6-446C-9A6E-BEBE87CE8510} = {84C439F0-986B-4029-9B04-21A3AECAC8AF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {325B9A1C-F35B-418E-8154-B7AE989B9DFF}

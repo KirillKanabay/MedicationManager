@@ -2,14 +2,14 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MedicationManager.Common.UI.Commands
+namespace MedicationManager.UI.Common.Commands
 {
     public abstract class AsyncCommandBase : ICommand
     {
-        private readonly Action<Exception> _onException;
+        protected readonly Action<Exception> OnException;
         private bool _isExecuting;
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged;
 
         public bool IsExecuting
         {
@@ -23,7 +23,7 @@ namespace MedicationManager.Common.UI.Commands
 
         protected AsyncCommandBase(Action<Exception> onException)
         {
-            _onException = onException;
+            OnException = onException;
         }
 
         public bool CanExecute(object parameter)
@@ -40,7 +40,7 @@ namespace MedicationManager.Common.UI.Commands
             }
             catch (Exception e)
             {
-                _onException?.Invoke(e);
+                OnException?.Invoke(e);
             }
             finally
             {

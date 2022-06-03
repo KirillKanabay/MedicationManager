@@ -1,16 +1,16 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using FluentValidation;
 
-namespace MedicationManager.Common.UI.ViewModels
+namespace MedicationManager.UI.Common.Models
 {
-    public abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
+        
         public virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
 }

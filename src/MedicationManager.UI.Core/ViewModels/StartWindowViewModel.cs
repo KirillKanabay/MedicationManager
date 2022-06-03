@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Windows;
 using MaterialDesignExtensions.Controls;
 using MaterialDesignExtensions.Model;
-using MedicationManager.Common.UI.Commands;
-using MedicationManager.Common.UI.Immutable;
-using MedicationManager.Common.UI.ViewModels;
+using MaterialDesignThemes.Wpf;
+using MedicationManager.UI.Common.Commands;
+using MedicationManager.UI.Common.Immutable;
+using MedicationManager.UI.Common.ViewModels;
 using MedicationManager.UI.Core.ViewModels.Medications;
+using MedicationControlViewModel = MedicationManager.UI.Core.ViewModels.Medications.MedicationControlViewModel;
 
 namespace MedicationManager.UI.Core.ViewModels
 {
@@ -14,14 +17,20 @@ namespace MedicationManager.UI.Core.ViewModels
         private readonly MainMenuViewModel _mainMenuViewModel;
         
         private BaseViewModel _currentViewModel;
-        
-        public StartWindowViewModel(MainMenuViewModel mainMenuViewModel, MedicationPageViewModel medicationPageViewModel)
+        private string _currentViewModelName;
+
+        public StartWindowViewModel(MainMenuViewModel mainMenuViewModel, 
+            MedicationControlViewModel medicationPageViewModel,
+            ISnackbarMessageQueue messageQueue)
         {
             MainMenuViewModel = mainMenuViewModel ?? throw new ArgumentNullException(nameof(mainMenuViewModel));
-            CurrentViewModel = medicationPageViewModel;
+            CurrentViewModel = medicationPageViewModel ?? throw new ArgumentNullException(nameof(medicationPageViewModel));
+            MessageQueue = messageQueue ?? throw new ArgumentNullException(nameof(messageQueue));
         }
 
         public string Title => "Управление медикаментами";
+
+        public ISnackbarMessageQueue MessageQueue { get; }
 
         public BaseViewModel CurrentViewModel
         {
@@ -47,13 +56,27 @@ namespace MedicationManager.UI.Core.ViewModels
         {
             if (_.NavigationItemToSelect is FirstLevelNavigationItem navigationItem)
             {
-                CurrentViewModel = _mainMenuViewModel.NavigationViewModels[navigationItem.Label];
+                if (!navigationItem.Label?.Equals(_currentViewModelName) ?? false)
+                {
+                    CurrentViewModel = _mainMenuViewModel.NavigationViewModels[navigationItem.Label];
+                }
             }
         });
 
         public DelegateCommand OnLoadedCommand => new(_ =>
         {
+            _currentViewModelName = _defaultMenuItem;
             CurrentViewModel = _mainMenuViewModel.NavigationViewModels[_defaultMenuItem];
+        });
+
+        public DelegateCommand<Window> CloseWindowCommand => new(_ =>
+        {
+            _.Close();
+        });
+
+        public DelegateCommand<Window> MinimizeWindowCommand => new(_ =>
+        {
+            _.WindowState = WindowState.Minimized;
         });
     }
 }

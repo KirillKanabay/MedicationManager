@@ -1,4 +1,7 @@
 ﻿using System.IO;
+using MaterialDesignThemes.Wpf;
+using MedicationManager.UI.Common;
+using MedicationManager.UI.Core.Factories;
 using MedicationManager.UI.IoC;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,11 +21,18 @@ namespace MedicationManager.UI
         {
             var services = new ServiceCollection();
 
+            services.AddSingleton<ViewModelLocator>();
+            services.AddSingleton<MedicationDialogFactory>();
+            services.AddSingleton<ISnackbarMessageQueue, SnackbarMessageQueue>();
+
             services.RegisterDatabase(_configuration);
             services.RegisterRepositories();
             services.RegisterViewModels();
             services.RegisterWindows();
-
+            services.RegisterBllServices();
+            services.RegisterViews();
+            services.RegisterMappers();
+            
             return services;
         }
 

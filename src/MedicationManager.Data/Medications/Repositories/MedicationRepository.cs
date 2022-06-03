@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MedicationManager.Common.Data.BaseRepositories;
@@ -22,18 +23,19 @@ namespace MedicationManager.Data.Medications.Repositories
 
         public Task<List<MedicationDocument>> GetAllMedicationsAsync()
         {
-            return ListAllAsync();
+            return base.ListAllAsync();
         }
 
         public Task<List<MedicationDocument>> GetMedicationsAsync(MedicationFilter filter)
         {
             var query = GetQuery();
 
-            if (filter.Name.IsPresent())
+            if (!filter.Name.IsNullOrWhitespace())
             {
                 if (filter.Name.Count == 1)
                 {
-                    var regex = new Regex($"^{filter.Name}", RegexOptions.IgnoreCase);
+                    var medicationName = filter.Name.First();
+                    var regex = new Regex($"^.*{medicationName}.*", RegexOptions.IgnoreCase);
                     query = query.Where(x => regex.IsMatch(x.Name));
                 }
                 else
@@ -48,6 +50,21 @@ namespace MedicationManager.Data.Medications.Repositories
             }
 
             return ListAsync(query);
+        }
+
+        public Task UpdateAsync(MedicationDocument document)
+        {
+            return base.UpdateOneAsync(document);
+        }
+
+        public Task AddAsync(MedicationDocument document)
+        {
+            return base.InsertAsync(document);
+        }
+
+        public Task DeleteAsync(string id)
+        {
+            return base.RemoveAsync(id);
         }
     }
 }
