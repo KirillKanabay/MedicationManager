@@ -17,7 +17,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\MedicationManager.UI.Common\MedicationManager.UI.Common.csproj" />
+		<ProjectReference Include="..\MedicationManager.UI.Common\MedicationManager.UI.Common.csproj" />
 		<ProjectReference Include="..\MedicationManager.BusinessLogic\MedicationManager.BusinessLogic.csproj" />
 		<ProjectReference Include="..\MedicationManager.Data\MedicationManager.Data.csproj" />
 		<ProjectReference Include="..\MedicationManager.Infrastructure\MedicationManager.Infrastructure.csproj" />
