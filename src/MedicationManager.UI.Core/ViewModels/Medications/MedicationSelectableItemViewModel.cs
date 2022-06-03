@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using MaterialDesignThemes.Wpf;
 using MedicationManager.BusinessLogic.Medications.Contracts;
-using MedicationManager.Data.Medications.Contracts;
 using MedicationManager.UI.Common.Commands;
 using MedicationManager.UI.Common.Immutable;
 using MedicationManager.UI.Common.ViewModels;
@@ -42,6 +41,13 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
         }
 
         private async Task DeleteItem()
+        {
+            var dialog = _medicationDialogFactory.CreateMedicationDeletionDialog(Model, DeleteItemCallback);
+
+            await DialogHost.Show(dialog, HostRoots.DialogRoot);
+        }
+
+        private async Task DeleteItemCallback()
         {
             await _medicationService.DeleteAsync(Model.Id);
             OnDeletionCompleted();

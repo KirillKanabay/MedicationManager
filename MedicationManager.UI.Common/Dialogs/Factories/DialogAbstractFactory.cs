@@ -1,4 +1,5 @@
-﻿using MedicationManager.UI.Common.Dialogs.DialogControl;
+﻿using MedicationManager.UI.Common.Dialogs.ConfirmDialog;
+using MedicationManager.UI.Common.Dialogs.DialogControl;
 using MedicationManager.UI.Common.ViewModels;
 
 namespace MedicationManager.UI.Common.Dialogs.Factories
@@ -11,6 +12,16 @@ namespace MedicationManager.UI.Common.Dialogs.Factories
             var dialog = new DialogControlView
             {
                 DataContext = new DialogControlViewModel(viewModel)
+            };
+
+            return dialog;
+        }
+
+        protected virtual ConfirmDialogView CreateConfirmDialogView(ConfirmDialogViewModel viewModel)
+        {
+            var dialog = new ConfirmDialogView
+            {
+                DataContext = viewModel
             };
 
             return dialog;
