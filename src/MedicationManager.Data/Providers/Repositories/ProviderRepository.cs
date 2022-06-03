@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using MedicationManager.Common.Data.BaseRepositories;
-using MedicationManager.Common.Data.Immutable;
-using MedicationManager.Common.Extensions;
+using MedicationManager.Data.Common.BaseRepositories;
+using MedicationManager.Data.Common.Immutable;
 using MedicationManager.Data.Providers.Contracts;
 using MedicationManager.Data.Providers.Documents;
 using MedicationManager.Data.Providers.Filters;
 using MedicationManager.Infrastructure.Contexts;
+using MedicationManager.Infrastructure.Extensions;
 using MongoDB.Driver.Linq;
 
 namespace MedicationManager.Data.Providers.Repositories

@@ -1,4 +1,4 @@
-﻿namespace MedicationManager.Common.BusinessLogic
+﻿namespace MedicationManager.BusinessLogic.Common
 {
     public class BaseDto
     {

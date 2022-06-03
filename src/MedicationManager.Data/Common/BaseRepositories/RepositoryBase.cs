@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using MedicationManager.Common.Data.Documents;
+using MedicationManager.Data.Common.Documents;
 using MedicationManager.Infrastructure.Contexts;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace MedicationManager.Common.Data.BaseRepositories
+namespace MedicationManager.Data.Common.BaseRepositories
 {
     public abstract class RepositoryBase
     {

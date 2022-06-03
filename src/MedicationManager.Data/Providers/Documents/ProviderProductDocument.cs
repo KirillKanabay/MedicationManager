@@ -1,4 +1,4 @@
-﻿using MedicationManager.Common.Data.Documents;
+﻿using MedicationManager.Data.Common.Documents;
 
 namespace MedicationManager.Data.Providers.Documents
 {

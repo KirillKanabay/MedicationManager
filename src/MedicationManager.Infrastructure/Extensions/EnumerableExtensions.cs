@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace MedicationManager.Common.Extensions
+namespace MedicationManager.Infrastructure.Extensions
 {
     public static class EnumerableExtensions
     {

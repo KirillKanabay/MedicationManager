@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using MedicationManager.Common.BusinessLogic;
+using MedicationManager.BusinessLogic.Common;
 
 namespace MedicationManager.BusinessLogic.Providers.Dtos
 {

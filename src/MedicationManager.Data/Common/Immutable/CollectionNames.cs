@@ -1,4 +1,4 @@
-﻿namespace MedicationManager.Common.Data.Immutable
+﻿namespace MedicationManager.Data.Common.Immutable
 {
     public class CollectionNames
     {

@@ -1,4 +1,4 @@
-﻿using MedicationManager.Common.BusinessLogic;
+﻿using MedicationManager.BusinessLogic.Common;
 
 namespace MedicationManager.BusinessLogic.Medications.Dtos
 {

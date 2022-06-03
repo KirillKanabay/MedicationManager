@@ -1,4 +1,4 @@
-﻿namespace MedicationManager.Common.Extensions
+﻿namespace MedicationManager.Infrastructure.Extensions
 {
     public static class StringExtensions
     {

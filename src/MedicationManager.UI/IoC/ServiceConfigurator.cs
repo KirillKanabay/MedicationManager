@@ -13,7 +13,6 @@ using MedicationManager.UI.Views;
 using MedicationManager.UI.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MedicationControlViewModel = MedicationManager.UI.Core.ViewModels.Medications.MedicationControlViewModel;
 
 namespace MedicationManager.UI.IoC
 {

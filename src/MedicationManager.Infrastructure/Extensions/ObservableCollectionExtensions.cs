@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace MedicationManager.Common.Extensions
+namespace MedicationManager.Infrastructure.Extensions
 {
     public static class ObservableCollectionExtensions
     {
