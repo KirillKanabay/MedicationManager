@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using MedicationManager.BusinessLogic.Medications.Dtos;
+using MedicationManager.BusinessLogic.Providers.Dtos;
 
 namespace MedicationManager.BusinessLogic.Providers.Contracts
 {
     public interface IProviderService
     {
-        Task<List<MedicationDto>> ListAsync(MedicationFilterDto filter);
-        Task<List<MedicationDto>> ListAllAsync();
-        Task<MedicationDto> GetByIdAsync(string id);
-        Task UpdateAsync(MedicationDto dto);
-        Task AddAsync(MedicationDto dto);
+        Task<List<ProviderDto>> ListAsync(ProviderFilterDto filter);
+        Task<List<ProviderDto>> ListAllAsync();
+        Task<ProviderDto> GetByIdAsync(string id);
+        Task UpdateAsync(ProviderDto dto);
+        Task AddAsync(ProviderDto dto);
         Task DeleteAsync(string id);
     }
 }
