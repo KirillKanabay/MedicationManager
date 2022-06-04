@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using MedicationManager.BusinessLogic.Medications.Contracts;
 using MedicationManager.BusinessLogic.Medications.Services;
+using MedicationManager.BusinessLogic.Providers.Contracts;
+using MedicationManager.BusinessLogic.Providers.Services;
 using MedicationManager.Data.Medications.Contracts;
 using MedicationManager.Data.Medications.Repositories;
 using MedicationManager.Infrastructure.Configurations;
@@ -58,6 +60,7 @@ namespace MedicationManager.UI.IoC
         public static void RegisterBllServices(this IServiceCollection services)
         {
             services.AddSingleton<IMedicationService, MedicationService>();
+            services.AddSingleton<IProviderService, ProviderService>();
         }
 
         public static void RegisterMappers(this IServiceCollection services)
@@ -68,8 +71,8 @@ namespace MedicationManager.UI.IoC
                 {
                     cfg.AddMaps
                     (
-                        typeof(IMedicationService).GetTypeInfo().Assembly,
-                        typeof(MedicationControlViewModel).GetTypeInfo().Assembly
+                        typeof(IMedicationService).GetTypeInfo().Assembly, //Medication.BusinessLogic
+                        typeof(MedicationControlViewModel).GetTypeInfo().Assembly //Medication.UI.Core
                     );
 
                     cfg.DisableConstructorMapping();
