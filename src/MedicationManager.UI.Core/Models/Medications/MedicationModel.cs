@@ -2,7 +2,7 @@
 using MedicationManager.UI.Common.Models;
 using MedicationManager.UI.Core.Validators;
 
-namespace MedicationManager.UI.Core.Models
+namespace MedicationManager.UI.Core.Models.Medications
 {
     public class MedicationModel : BaseValidatableModel
     {

@@ -1,6 +1,6 @@
 ﻿using MedicationManager.UI.Common.Models;
 
-namespace MedicationManager.UI.Core.Models
+namespace MedicationManager.UI.Core.Models.Medications
 {
     public class MedicationFilterModel : BaseModel
     {
