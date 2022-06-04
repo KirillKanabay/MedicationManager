@@ -2,7 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:medications="clr-namespace:MedicationManager.UI.Core.ViewModels.Medications;assembly=MedicationManager.UI.Core"
                     xmlns:views="clr-namespace:MedicationManager.UI.Views"
-                    xmlns:medicationViews="clr-namespace:MedicationManager.UI.Views.Medications">
+                    xmlns:medicationViews="clr-namespace:MedicationManager.UI.Views.Medications"
+                    xmlns:providers="clr-namespace:MedicationManager.UI.Core.ViewModels.Providers;assembly=MedicationManager.UI.Core"
+                    xmlns:providersViews="clr-namespace:MedicationManager.UI.Views.Providers">
     <DataTemplate DataType="{x:Type medications:MedicationControlViewModel}">
         <views:MedicationsControlView/>
     </DataTemplate>
@@ -11,5 +13,8 @@
     </DataTemplate>
     <DataTemplate DataType="{x:Type medications:MedicationEditorViewModel}">
         <medicationViews:MedicationEditorView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type providers:ProviderControlViewModel}">
+        <providersViews:ProvidersControlView/>
     </DataTemplate>
 </ResourceDictionary>

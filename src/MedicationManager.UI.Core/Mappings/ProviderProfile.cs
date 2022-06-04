@@ -11,7 +11,7 @@ namespace MedicationManager.UI.Core.Mappings
             CreateMap<ProviderDto, ProviderModel>().ReverseMap();
             CreateMap<ProviderProductDto, ProviderProductModel>().ReverseMap();
 
-            CreateMap<ProviderFilterModel, ProviderProductDto>().ReverseMap();
+            CreateMap<ProviderFilterModel, ProviderFilterDto>().ReverseMap();
         }
     }
 }

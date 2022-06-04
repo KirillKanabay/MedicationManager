@@ -7,11 +7,15 @@ using MedicationManager.BusinessLogic.Providers.Contracts;
 using MedicationManager.BusinessLogic.Providers.Services;
 using MedicationManager.Data.Medications.Contracts;
 using MedicationManager.Data.Medications.Repositories;
+using MedicationManager.Data.Providers.Contracts;
+using MedicationManager.Data.Providers.Repositories;
 using MedicationManager.Infrastructure.Configurations;
 using MedicationManager.Infrastructure.Contexts;
 using MedicationManager.UI.Core.ViewModels;
 using MedicationManager.UI.Core.ViewModels.Medications;
+using MedicationManager.UI.Core.ViewModels.Providers;
 using MedicationManager.UI.Views;
+using MedicationManager.UI.Views.Providers;
 using MedicationManager.UI.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,6 +38,7 @@ namespace MedicationManager.UI.IoC
         public static void RegisterRepositories(this IServiceCollection services)
         {
             services.AddSingleton<IMedicationRepository, MedicationRepository>();
+            services.AddSingleton<IProviderRepository, ProviderRepository>();
         }
         
         public static void RegisterViewModels(this IServiceCollection services)
@@ -45,6 +50,11 @@ namespace MedicationManager.UI.IoC
             services.AddTransient<MedicationSelectableItemViewModel>();
             services.AddTransient<MedicationEditorViewModel>();
             services.AddTransient<MedicationCreatorViewModel>();
+
+            services.AddTransient<ProviderControlViewModel>();
+            services.AddTransient<ProviderSelectableItemViewModel>();
+            services.AddTransient<ProviderEditorViewModel>();
+            services.AddTransient<ProviderCreatorViewModel>();
         }
 
         public static void RegisterWindows(this IServiceCollection services)
@@ -55,6 +65,7 @@ namespace MedicationManager.UI.IoC
         public static void RegisterViews(this IServiceCollection services)
         {
             services.AddTransient<MedicationsControlView>();
+            services.AddTransient<ProvidersControlView>();
         }
 
         public static void RegisterBllServices(this IServiceCollection services)

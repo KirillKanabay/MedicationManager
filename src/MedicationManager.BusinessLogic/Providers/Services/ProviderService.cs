@@ -30,7 +30,7 @@ namespace MedicationManager.BusinessLogic.Providers.Services
 
             var documentFilter = new ProviderFilter
             {
-                CompanyName = new List<string> {  }
+                CompanyName = new List<string> { filter.CompanyName }
             };
 
             var providers = await _providerRepository.GetProvidersAsync(documentFilter);

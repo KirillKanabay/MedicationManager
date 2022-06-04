@@ -7,37 +7,39 @@ using MedicationManager.UI.Common.Dialogs.Factories;
 using MedicationManager.UI.Common.Immutable;
 using MedicationManager.UI.Common.ViewModels;
 using MedicationManager.UI.Core.Models.Medications;
+using MedicationManager.UI.Core.Models.Providers;
 using MedicationManager.UI.Core.ViewModels.Medications;
+using MedicationManager.UI.Core.ViewModels.Providers;
 
 namespace MedicationManager.UI.Core.Factories
 {
-    public class MedicationDialogFactory : DialogAbstractFactory
+    public class ProviderDialogFactory : DialogAbstractFactory
     {
         private readonly ViewModelLocator _viewModelLocator;
 
-        public MedicationDialogFactory(ViewModelLocator viewModelLocator)
+        public ProviderDialogFactory(ViewModelLocator viewModelLocator)
         {
             _viewModelLocator = viewModelLocator;
         }
 
-        public DialogControlView CreateMedicationCreator(IImportObserverViewModel observer)
+        public DialogControlView CreateProviderCreator(IImportObserverViewModel observer)
         {
             if (observer == null)
             {
                 throw new ArgumentNullException();
             }
-            var vm = _viewModelLocator.Resolve<MedicationCreatorViewModel>();
-            
+            var vm = _viewModelLocator.Resolve<ProviderCreatorViewModel>();
+
             vm.ImportCompleted += observer.ImportCompletedHandler;
 
             return CreateDialogControlView(vm);
         }
 
-        public DialogControlView CreateMedicationEditor(MedicationModel model)
+        public DialogControlView CreateMedicationEditor(ProviderModel model)
         {
-            var vm = _viewModelLocator.Resolve<MedicationEditorViewModel>();
+            var vm = _viewModelLocator.Resolve<ProviderEditorViewModel>();
 
-            vm.Bind(model); 
+            vm.Bind(model);
 
             return CreateDialogControlView(vm);
         }

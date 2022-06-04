@@ -59,6 +59,7 @@ namespace MedicationManager.UI.Core.ViewModels
                 if (!navigationItem.Label?.Equals(_currentViewModelName) ?? false)
                 {
                     CurrentViewModel = _mainMenuViewModel.NavigationViewModels[navigationItem.Label];
+                    _currentViewModelName = navigationItem.Label;
                 }
             }
         });
