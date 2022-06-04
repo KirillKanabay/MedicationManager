@@ -8,5 +8,11 @@
         {
             public static string InvalidPrice = "Стоимость должна быть больше 0 BYN";
         }
+
+        public static class Providers
+        {
+            public static string InvalidPrice = "Стоимость должна быть больше 0 BYN";
+            public static string ProductIsNull = "Должен быть выбран продукт";
+        }
     }
 }
