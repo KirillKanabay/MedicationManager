@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using MedicationManager.BusinessLogic.Medications.Contracts;
+using MedicationManager.BusinessLogic.Medications.Dtos;
 using MedicationManager.BusinessLogic.Providers.Contracts;
 using MedicationManager.BusinessLogic.Providers.Dtos;
 using MedicationManager.Data.Providers.Contracts;
@@ -14,11 +17,13 @@ namespace MedicationManager.BusinessLogic.Providers.Services
     {
         private readonly IMapper _mapper;
         private readonly IProviderRepository _providerRepository;
+        private readonly IMedicationService _medicationService;
 
-        public ProviderService(IMapper mapper, IProviderRepository providerRepository)
+        public ProviderService(IMapper mapper, IProviderRepository providerRepository, IMedicationService medicationService)
         {
             _mapper = mapper;
             _providerRepository = providerRepository;
+            _medicationService = medicationService;
         }
 
         public async Task<List<ProviderDto>> ListAsync(ProviderFilterDto filter)
@@ -35,7 +40,7 @@ namespace MedicationManager.BusinessLogic.Providers.Services
 
             var providers = await _providerRepository.GetProvidersAsync(documentFilter);
 
-            var dtos = _mapper.Map<List<ProviderDto>>(providers);
+            var dtos = await ToDto(providers);
 
             return dtos;
         }
@@ -44,7 +49,7 @@ namespace MedicationManager.BusinessLogic.Providers.Services
         {
             var providers = await _providerRepository.GetAllProvidersAsync();
 
-            var dtos = _mapper.Map<List<ProviderDto>>(providers);
+            var dtos = await ToDto(providers);
 
             return dtos;
         }
@@ -53,7 +58,7 @@ namespace MedicationManager.BusinessLogic.Providers.Services
         {
             var provider = await _providerRepository.GetByIdAsync(id);
 
-            var dto = _mapper.Map<ProviderDto>(provider);
+            var dto = await ToDto(provider);
 
             return dto;
         }
@@ -75,6 +80,38 @@ namespace MedicationManager.BusinessLogic.Providers.Services
         public async Task DeleteAsync(string id)
         {
             await _providerRepository.DeleteAsync(id);
+        }
+
+        private async Task<List<ProviderDto>> ToDto(List<ProviderDocument> documents)
+        {
+            var tasks = documents.Select(ToDto);
+
+            var result = await Task.WhenAll(tasks);
+
+            return result.ToList();
+        }
+
+        private async Task<ProviderDto> ToDto(ProviderDocument document)
+        {
+            var dto = _mapper.Map<ProviderDto>(document);
+            
+            if (dto.Products?.Any() ?? false)
+            {
+                var productsId = dto.Products?.Select(x => x.MedicationId).ToList();
+
+                var medications = await _medicationService.ListAsync(new MedicationFilterDto
+                {
+                    Id = productsId
+                });
+
+                foreach (var providerProductDto in dto.Products)
+                {
+                    providerProductDto.Medication = medications
+                        .FirstOrDefault(x => x.Id.Equals(providerProductDto.MedicationId));
+                }
+            }
+
+            return dto;
         }
     }
 }

@@ -10,6 +10,7 @@ using MedicationManager.UI.Common.ViewModels;
 using MedicationManager.UI.Core.EventArguments;
 using MedicationManager.UI.Core.Factories;
 using MedicationManager.UI.Core.Models.Providers;
+using MedicationManager.UI.Core.ViewModels.ProviderProducts;
 
 namespace MedicationManager.UI.Core.ViewModels.Providers.Import.Creator
 {
@@ -65,7 +66,7 @@ namespace MedicationManager.UI.Core.ViewModels.Providers.Import.Creator
         {
             var selectableProduct = _viewModelLocator.Resolve<ProviderProductSelectableItemViewModel, ProviderProductModel>(model);
             
-            selectableProduct.ProductDeleted += OnProductDeleted;
+            //selectableProduct.ProductDeleted += OnProductDeleted;
 
             return selectableProduct;
         }

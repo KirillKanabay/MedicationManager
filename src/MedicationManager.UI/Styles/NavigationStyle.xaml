@@ -83,18 +83,40 @@
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type controls:SecondLevelNavigationItem}">
-        <Grid Height="48">
+        <Grid Height="34">
             <Border Style="{StaticResource navigationItemBackgroundBorderStyle}" />
             <Border
-                Padding="48,0,0,0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch">
                 <Grid Height="24" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="24" />
                         <ColumnDefinition Width="100*" />
+                        <ColumnDefinition Width="30" />
                     </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Grid.Column="0"
+                        Margin="32,0,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        Text="{Binding Path=Label}"
+                        FontWeight="Medium"
+                        TextTrimming="CharacterEllipsis">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=IsSelected}" Value="False">
+                                        <Setter Property="Foreground" Value="{Binding Path=LabelForeground, RelativeSource={RelativeSource AncestorType={x:Type controls:SideNavigation}}}" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Path=IsSelected}" Value="True">
+                                        <Setter Property="Foreground" Value="{Binding Path=SelectionForeground, RelativeSource={RelativeSource AncestorType={x:Type controls:SideNavigation}}}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                     <ContentControl
+                        Grid.Column="1"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         Content="{Binding Path=Icon}"
@@ -128,29 +150,6 @@
                             </Style>
                         </ContentControl.Style>
                     </ContentControl>
-                    <TextBlock
-                        Grid.Column="1"
-                        Margin="32,0,0,0"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Center"
-                        FontSize="14"
-                        Text="{Binding Path=Label}"
-                        TextTrimming="CharacterEllipsis">
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=IsSelected}" Value="False">
-                                        <Setter Property="FontWeight" Value="Normal" />
-                                        <Setter Property="Foreground" Value="{Binding Path=LabelForeground, RelativeSource={RelativeSource AncestorType={x:Type controls:SideNavigation}}}" />
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Path=IsSelected}" Value="True">
-                                        <Setter Property="FontWeight" Value="Bold" />
-                                        <Setter Property="Foreground" Value="{Binding Path=SelectionForeground, RelativeSource={RelativeSource AncestorType={x:Type controls:SideNavigation}}}" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
                 </Grid>
             </Border>
         </Grid>

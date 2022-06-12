@@ -1,23 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MedicationManager.UI.Common.Commands;
 using MedicationManager.UI.Common.ViewModels;
 using MedicationManager.UI.Core.EventArguments;
 using MedicationManager.UI.Core.Models.Providers;
 
-namespace MedicationManager.UI.Core.ViewModels.Providers.Import
+namespace MedicationManager.UI.Core.ViewModels.ProviderProducts
 {
     public class ProviderProductSelectableItemViewModel : BaseSelectableTableItemViewModel, IModelBasedViewModel<ProviderProductModel>
     {
-        public event EventHandler<ProviderProductDeletedEventArgs> ProductDeleted;
-
-        public string Test { get; set; } = "test";
-
-        public ProviderProductSelectableItemViewModel()
-        {
-            
-        }
-
         public ProviderProductModel Model { get; private set; }
 
         public override TaskBasedCommand DeleteItemCommand => new(DeleteItem);

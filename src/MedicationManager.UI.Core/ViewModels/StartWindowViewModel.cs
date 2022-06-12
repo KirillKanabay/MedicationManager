@@ -54,7 +54,7 @@ namespace MedicationManager.UI.Core.ViewModels
 
         public DelegateCommand<WillSelectNavigationItemEventArgs> SelectNavigationItemCommand => new(_ =>
         {
-            if (_.NavigationItemToSelect is FirstLevelNavigationItem navigationItem)
+            if (_.NavigationItemToSelect is NavigationItem navigationItem)
             {
                 if (!navigationItem.Label?.Equals(_currentViewModelName) ?? false)
                 {

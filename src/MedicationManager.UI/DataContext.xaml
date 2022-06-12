@@ -5,7 +5,9 @@
                     xmlns:medicationViews="clr-namespace:MedicationManager.UI.Views.Medications"
                     xmlns:providers="clr-namespace:MedicationManager.UI.Core.ViewModels.Providers;assembly=MedicationManager.UI.Core"
                     xmlns:providersViews="clr-namespace:MedicationManager.UI.Views.Providers"
-                    xmlns:creator1="clr-namespace:MedicationManager.UI.Core.ViewModels.Providers.Import.Creator;assembly=MedicationManager.UI.Core">
+                    xmlns:creator1="clr-namespace:MedicationManager.UI.Core.ViewModels.Providers.Import.Creator;assembly=MedicationManager.UI.Core"
+                    xmlns:providerProducts="clr-namespace:MedicationManager.UI.Core.ViewModels.ProviderProducts;assembly=MedicationManager.UI.Core"
+                    xmlns:providerProducts1="clr-namespace:MedicationManager.UI.Views.ProviderProducts">
     <DataTemplate DataType="{x:Type medications:MedicationControlViewModel}">
         <views:MedicationsControlView/>
     </DataTemplate>
@@ -26,5 +28,8 @@
     </DataTemplate>
     <DataTemplate DataType="{x:Type creator1:ProviderConcreteProductCreatorViewModel}">
         <providersViews:ProviderConcreteProductImportView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type providerProducts:ProviderProductsControlViewModel}">
+        <providerProducts1:ProviderProductsControlView/>
     </DataTemplate>
 </ResourceDictionary>

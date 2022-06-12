@@ -7,5 +7,6 @@
         public const string WriteOff = "Списания";
         public const string Medication = "База медикаментов";
         public const string Provider = "Поставщики";
+        public const string ProviderProducts = "Ассортимент";
     }
 }

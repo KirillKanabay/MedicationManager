@@ -4,7 +4,9 @@ namespace MedicationManager.BusinessLogic.Providers.Dtos
 {
     public class ProviderProductDto
     {
-        public MedicationDto Medication { get; set; }
+        public string MedicationId { get; set; }
         public decimal Price { get; set; }
+
+        public MedicationDto Medication { get; set; }
     }
 }

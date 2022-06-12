@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MedicationManager.UI.Views.Providers
+namespace MedicationManager.UI.Views.ProviderProducts
 {
     /// <summary>
-    /// Interaction logic for ProvidersControlView.xaml
+    /// Interaction logic for ProviderProductsControlView.xaml
     /// </summary>
-    public partial class ProvidersControlView : UserControl
+    public partial class ProviderProductsControlView : UserControl
     {
-        public ProvidersControlView()
+        public ProviderProductsControlView()
         {
             InitializeComponent();
         }

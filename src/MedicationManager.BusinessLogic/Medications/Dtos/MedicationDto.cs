@@ -9,5 +9,10 @@ namespace MedicationManager.BusinessLogic.Medications.Dtos
         public string Manufacturer { get; set; }
         public bool ReceiptRequired { get; set; }
         public decimal Price { get; set; }
+
+        public override int GetHashCode()
+        {
+            return (Name?.GetHashCode() ?? 0 + Manufacturer?.GetHashCode() ?? 0);
+        }
     }
 }

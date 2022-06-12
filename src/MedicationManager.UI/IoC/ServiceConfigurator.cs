@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Reflection;
 using MedicationManager.BusinessLogic.Medications.Contracts;
 using MedicationManager.BusinessLogic.Medications.Services;
 using MedicationManager.BusinessLogic.Providers.Contracts;
@@ -13,10 +11,12 @@ using MedicationManager.Infrastructure.Configurations;
 using MedicationManager.Infrastructure.Contexts;
 using MedicationManager.UI.Core.ViewModels;
 using MedicationManager.UI.Core.ViewModels.Medications;
+using MedicationManager.UI.Core.ViewModels.ProviderProducts;
 using MedicationManager.UI.Core.ViewModels.Providers;
 using MedicationManager.UI.Core.ViewModels.Providers.Import;
 using MedicationManager.UI.Core.ViewModels.Providers.Import.Creator;
 using MedicationManager.UI.Views;
+using MedicationManager.UI.Views.ProviderProducts;
 using MedicationManager.UI.Views.Providers;
 using MedicationManager.UI.Windows;
 using Microsoft.Extensions.Configuration;
@@ -61,6 +61,8 @@ namespace MedicationManager.UI.IoC
             services.AddTransient<ProviderProductCreatorViewModel>();
             services.AddTransient<ProviderConcreteProductCreatorViewModel>();
             services.AddTransient<ProviderProductSelectableItemViewModel>();
+
+            services.AddTransient<ProviderProductsControlViewModel>();
         }
 
         public static void RegisterWindows(this IServiceCollection services)
@@ -72,12 +74,14 @@ namespace MedicationManager.UI.IoC
         {
             services.AddTransient<MedicationsControlView>();
             services.AddTransient<ProvidersControlView>();
+            services.AddTransient<ProviderProductsControlView>();
         }
 
         public static void RegisterBllServices(this IServiceCollection services)
         {
             services.AddSingleton<IMedicationService, MedicationService>();
             services.AddSingleton<IProviderService, ProviderService>();
+            services.AddSingleton<IProviderProductService, ProviderProductService>();
         }
 
         public static void RegisterMappers(this IServiceCollection services)
