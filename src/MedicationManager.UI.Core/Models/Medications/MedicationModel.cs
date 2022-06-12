@@ -77,5 +77,7 @@ namespace MedicationManager.UI.Core.Models.Medications
                 OnPropertyChanged(nameof(Price));
             }
         }
+
+        public override string ToString() => Name;
     }
 }

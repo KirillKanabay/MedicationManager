@@ -32,6 +32,8 @@ namespace MedicationManager.UI.Core.ViewModels.Providers
             }
         }
 
+        public bool SaveButtonIsEnabled => !Model?.IsValid ?? false;
+
         public virtual TaskBasedCommand SaveItemCommand => new(SaveModel);
 
         protected virtual Task SaveModel()

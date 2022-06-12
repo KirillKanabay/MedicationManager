@@ -10,8 +10,13 @@ namespace MedicationManager.UI.Core.ViewModels.Providers
 {
     public class ProviderSelectableItemViewModel : BaseSelectableTableItemViewModel, IModelBasedViewModel<ProviderModel>
     {
-        public override TaskBasedCommand DeleteItemCommand { get; }
-        public override TaskBasedCommand EditItemCommand { get; }
+        public override TaskBasedCommand DeleteItemCommand => new(() => Task.CompletedTask);
+        public override TaskBasedCommand EditItemCommand => new(() => Task.CompletedTask);
+
+        public ProviderSelectableItemViewModel()
+        {
+            
+        }
 
         public EventHandler DeletionCompleted;
         public ProviderModel Model { get; private set; }

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using FluentValidation;
 using MedicationManager.UI.Common.Models;
 using MedicationManager.UI.Core.Validators.Providers;
@@ -11,7 +12,7 @@ namespace MedicationManager.UI.Core.Models.Providers
         private string _companyName;
         private string _director;
         private string _address;
-        private ObservableCollection<ProviderProductModel> _availableMedications;
+        private List<ProviderProductModel> _availableMedications;
 
         protected override IValidationContext ValidationContext => new ValidationContext<ProviderModel>(this);
 
@@ -59,7 +60,7 @@ namespace MedicationManager.UI.Core.Models.Providers
             }
         }
 
-        public ObservableCollection<ProviderProductModel> AvailableMedications
+        public List<ProviderProductModel> AvailableMedications
         {
             get => _availableMedications;
             set

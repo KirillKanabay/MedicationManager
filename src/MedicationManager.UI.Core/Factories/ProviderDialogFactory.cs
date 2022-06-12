@@ -10,6 +10,7 @@ using MedicationManager.UI.Core.Models.Medications;
 using MedicationManager.UI.Core.Models.Providers;
 using MedicationManager.UI.Core.ViewModels.Medications;
 using MedicationManager.UI.Core.ViewModels.Providers;
+using MedicationManager.UI.Core.ViewModels.Providers.Import.Creator;
 
 namespace MedicationManager.UI.Core.Factories
 {
@@ -28,9 +29,24 @@ namespace MedicationManager.UI.Core.Factories
             {
                 throw new ArgumentNullException();
             }
+
             var vm = _viewModelLocator.Resolve<ProviderCreatorViewModel>();
 
             vm.ImportCompleted += observer.ImportCompletedHandler;
+
+            return CreateDialogControlView(vm);
+        }
+
+        public DialogControlView CreateProviderConcreteProductCreator(ProviderProductCreatorViewModel creatorVm)
+        {
+            if (creatorVm == null)
+            {
+                throw new ArgumentNullException(nameof(creatorVm));
+            }
+
+            var vm = _viewModelLocator.Resolve<ProviderConcreteProductCreatorViewModel>();
+
+            vm.ProductCreated += creatorVm.OnProductCreated;
 
             return CreateDialogControlView(vm);
         }

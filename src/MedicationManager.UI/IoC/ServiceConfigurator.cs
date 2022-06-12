@@ -14,6 +14,8 @@ using MedicationManager.Infrastructure.Contexts;
 using MedicationManager.UI.Core.ViewModels;
 using MedicationManager.UI.Core.ViewModels.Medications;
 using MedicationManager.UI.Core.ViewModels.Providers;
+using MedicationManager.UI.Core.ViewModels.Providers.Import;
+using MedicationManager.UI.Core.ViewModels.Providers.Import.Creator;
 using MedicationManager.UI.Views;
 using MedicationManager.UI.Views.Providers;
 using MedicationManager.UI.Windows;
@@ -55,6 +57,10 @@ namespace MedicationManager.UI.IoC
             services.AddTransient<ProviderSelectableItemViewModel>();
             services.AddTransient<ProviderEditorViewModel>();
             services.AddTransient<ProviderCreatorViewModel>();
+            services.AddTransient<ProviderInformationCreatorViewModel>();
+            services.AddTransient<ProviderProductCreatorViewModel>();
+            services.AddTransient<ProviderConcreteProductCreatorViewModel>();
+            services.AddTransient<ProviderProductSelectableItemViewModel>();
         }
 
         public static void RegisterWindows(this IServiceCollection services)
