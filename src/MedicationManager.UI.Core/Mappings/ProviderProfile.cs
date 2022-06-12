@@ -9,6 +9,7 @@ namespace MedicationManager.UI.Core.Mappings
         public ProviderProfile()
         {
             CreateMap<ProviderDto, ProviderModel>().ReverseMap();
+            CreateMap<ProviderModel, ProviderModel>();
             CreateMap<ProviderProductDto, ProviderProductModel>().ReverseMap();
 
             CreateMap<ProviderFilterModel, ProviderFilterDto>().ReverseMap();

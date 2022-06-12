@@ -15,7 +15,7 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
         private readonly IMedicationService _medicationService;
         private readonly IMapper _mapper;
         private readonly ISnackbarMessageQueue _snackbarMessageQueue;
-        //todo: Remove this prop
+        
         private MedicationModel _originalModel;
 
         public MedicationEditorViewModel(IMedicationService medicationService, IMapper mapper, ISnackbarMessageQueue snackbarMessageQueue)

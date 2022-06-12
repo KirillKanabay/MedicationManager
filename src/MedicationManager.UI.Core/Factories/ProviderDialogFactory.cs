@@ -8,7 +8,6 @@ using MedicationManager.UI.Common.Immutable;
 using MedicationManager.UI.Common.ViewModels;
 using MedicationManager.UI.Core.Models.Medications;
 using MedicationManager.UI.Core.Models.Providers;
-using MedicationManager.UI.Core.ViewModels.Medications;
 using MedicationManager.UI.Core.ViewModels.Providers;
 using MedicationManager.UI.Core.ViewModels.Providers.Import.Creator;
 
@@ -36,6 +35,26 @@ namespace MedicationManager.UI.Core.Factories
 
             return CreateDialogControlView(vm);
         }
+        
+        public DialogControlView CreateProviderEditor(ProviderModel model)
+        {
+            var vm = _viewModelLocator.Resolve<ProviderEditorViewModel, ProviderModel>(model);
+
+            vm.Bind(model);
+
+            return CreateDialogControlView(vm);
+        }
+
+        public ConfirmDialogView CreateProviderDeletionDialog(ProviderModel model, Func<Task> deletionCallback)
+        {
+            var vm = new ConfirmDialogViewModel(deletionCallback)
+            {
+                Title = UiConstants.Providers.DeletionDialogTitle,
+                Message = $"{UiConstants.Providers.DeletionDialogMessage}{model.CompanyName}"
+            };
+
+            return CreateConfirmDialogView(vm);
+        }
 
         public DialogControlView CreateProviderConcreteProductCreator(ProviderProductCreatorViewModel creatorVm)
         {
@@ -49,26 +68,6 @@ namespace MedicationManager.UI.Core.Factories
             vm.ProductCreated += creatorVm.OnProductCreated;
 
             return CreateDialogControlView(vm);
-        }
-
-        public DialogControlView CreateMedicationEditor(ProviderModel model)
-        {
-            var vm = _viewModelLocator.Resolve<ProviderEditorViewModel>();
-
-            vm.Bind(model);
-
-            return CreateDialogControlView(vm);
-        }
-
-        public ConfirmDialogView CreateMedicationDeletionDialog(MedicationModel model, Func<Task> deletionCallback)
-        {
-            var vm = new ConfirmDialogViewModel(deletionCallback)
-            {
-                Title = UiConstants.Medications.DeletionDialogTitle,
-                Message = $"{UiConstants.Medications.DeletionDialogMessage}{model.Name}"
-            };
-
-            return CreateConfirmDialogView(vm);
         }
     }
 }
