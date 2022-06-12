@@ -27,7 +27,7 @@
     <materialDesign:DialogHost
         Grid.Row="1"
         CloseOnClickAway="True"
-        Identifier="EditorDialog">
+        Identifier="MedicationEditorDialog">
         <Grid Margin="20,20,20,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />

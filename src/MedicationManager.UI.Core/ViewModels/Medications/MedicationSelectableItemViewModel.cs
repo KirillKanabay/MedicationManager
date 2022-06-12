@@ -6,7 +6,7 @@ using MedicationManager.UI.Common.Commands;
 using MedicationManager.UI.Common.Immutable;
 using MedicationManager.UI.Common.ViewModels;
 using MedicationManager.UI.Core.Factories;
-using MedicationManager.UI.Core.Models;
+using MedicationManager.UI.Core.Models.Medications;
 
 namespace MedicationManager.UI.Core.ViewModels.Medications
 {

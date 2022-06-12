@@ -1,14 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using AutoMapper;
 using MaterialDesignThemes.Wpf;
 using MedicationManager.BusinessLogic.Medications.Contracts;
 using MedicationManager.BusinessLogic.Medications.Dtos;
-using MedicationManager.UI.Common.Commands;
 using MedicationManager.UI.Common.Immutable;
 using MedicationManager.UI.Common.ViewModels;
-using MedicationManager.UI.Core.Models;
+using MedicationManager.UI.Core.Models.Medications;
 
 namespace MedicationManager.UI.Core.ViewModels.Medications
 {
@@ -17,6 +15,7 @@ namespace MedicationManager.UI.Core.ViewModels.Medications
         private readonly IMedicationService _medicationService;
         private readonly IMapper _mapper;
         private readonly ISnackbarMessageQueue _snackbarMessageQueue;
+        
         private MedicationModel _originalModel;
 
         public MedicationEditorViewModel(IMedicationService medicationService, IMapper mapper, ISnackbarMessageQueue snackbarMessageQueue)

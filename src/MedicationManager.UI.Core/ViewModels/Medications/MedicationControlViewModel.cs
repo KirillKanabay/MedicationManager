@@ -6,13 +6,13 @@ using AutoMapper;
 using MaterialDesignThemes.Wpf;
 using MedicationManager.BusinessLogic.Medications.Contracts;
 using MedicationManager.BusinessLogic.Medications.Dtos;
-using MedicationManager.Common.Extensions;
+using MedicationManager.Infrastructure.Extensions;
 using MedicationManager.UI.Common;
 using MedicationManager.UI.Common.Commands;
 using MedicationManager.UI.Common.Immutable;
 using MedicationManager.UI.Common.ViewModels;
 using MedicationManager.UI.Core.Factories;
-using MedicationManager.UI.Core.Models;
+using MedicationManager.UI.Core.Models.Medications;
 
 namespace MedicationManager.UI.Core.ViewModels.Medications
 {

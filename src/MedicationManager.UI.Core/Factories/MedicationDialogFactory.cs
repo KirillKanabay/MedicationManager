@@ -6,7 +6,7 @@ using MedicationManager.UI.Common.Dialogs.DialogControl;
 using MedicationManager.UI.Common.Dialogs.Factories;
 using MedicationManager.UI.Common.Immutable;
 using MedicationManager.UI.Common.ViewModels;
-using MedicationManager.UI.Core.Models;
+using MedicationManager.UI.Core.Models.Medications;
 using MedicationManager.UI.Core.ViewModels.Medications;
 
 namespace MedicationManager.UI.Core.Factories

@@ -30,7 +30,8 @@ namespace MedicationManager.BusinessLogic.Medications.Services
 
             var documentFilter = new MedicationFilter
             {
-                Name = new List<string> {filter.Name}
+                Name = new List<string> {filter.Name},
+                Id = filter.Id
             };
 
             var medications = await _medicationRepository.GetMedicationsAsync(documentFilter);

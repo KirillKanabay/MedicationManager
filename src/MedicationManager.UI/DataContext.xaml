@@ -2,7 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:medications="clr-namespace:MedicationManager.UI.Core.ViewModels.Medications;assembly=MedicationManager.UI.Core"
                     xmlns:views="clr-namespace:MedicationManager.UI.Views"
-                    xmlns:medicationViews="clr-namespace:MedicationManager.UI.Views.Medications">
+                    xmlns:medicationViews="clr-namespace:MedicationManager.UI.Views.Medications"
+                    xmlns:providers="clr-namespace:MedicationManager.UI.Core.ViewModels.Providers;assembly=MedicationManager.UI.Core"
+                    xmlns:providersViews="clr-namespace:MedicationManager.UI.Views.Providers"
+                    xmlns:creator1="clr-namespace:MedicationManager.UI.Core.ViewModels.Providers.Import.Creator;assembly=MedicationManager.UI.Core"
+                    xmlns:providerProducts="clr-namespace:MedicationManager.UI.Core.ViewModels.ProviderProducts;assembly=MedicationManager.UI.Core"
+                    xmlns:providerProducts1="clr-namespace:MedicationManager.UI.Views.ProviderProducts">
     <DataTemplate DataType="{x:Type medications:MedicationControlViewModel}">
         <views:MedicationsControlView/>
     </DataTemplate>
@@ -11,5 +16,20 @@
     </DataTemplate>
     <DataTemplate DataType="{x:Type medications:MedicationEditorViewModel}">
         <medicationViews:MedicationEditorView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type providers:ProviderControlViewModel}">
+        <providersViews:ProvidersControlView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type providers:ProviderCreatorViewModel}">
+        <providersViews:ProviderEditorView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type providers:ProviderEditorViewModel}">
+        <providersViews:ProviderEditorView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type creator1:ProviderConcreteProductCreatorViewModel}">
+        <providersViews:ProviderConcreteProductImportView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type providerProducts:ProviderProductsControlViewModel}">
+        <providerProducts1:ProviderProductsControlView/>
     </DataTemplate>
 </ResourceDictionary>
