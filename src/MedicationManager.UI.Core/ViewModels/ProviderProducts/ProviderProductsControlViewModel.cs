@@ -22,7 +22,5 @@ namespace MedicationManager.UI.Core.ViewModels.ProviderProducts
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _viewModelLocator = viewModelLocator ?? throw new ArgumentNullException(nameof(viewModelLocator));
         }
-
-        public ObservableCollection<>
     }
 }

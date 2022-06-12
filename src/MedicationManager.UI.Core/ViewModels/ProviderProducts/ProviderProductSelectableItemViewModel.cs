@@ -31,10 +31,10 @@ namespace MedicationManager.UI.Core.ViewModels.ProviderProducts
 
         protected virtual void OnProductDeleted()
         {
-            ProductDeleted?.Invoke(this, new ProviderProductDeletedEventArgs
-            {
-                Product = Model
-            });
+            //ProductDeleted?.Invoke(this, new ProviderProductDeletedEventArgs
+            //{
+            //    Product = Model
+            //});
         }
     }
 }
