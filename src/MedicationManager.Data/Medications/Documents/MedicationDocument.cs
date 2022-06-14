@@ -8,6 +8,6 @@ namespace MedicationManager.Data.Medications.Documents
         public string Description { get; set; }
         public string Manufacturer { get; set; }
         public bool ReceiptRequired { get; set; }
-        public decimal Price { get; set; }
+        public int Count { get; set; }
     }
 }
