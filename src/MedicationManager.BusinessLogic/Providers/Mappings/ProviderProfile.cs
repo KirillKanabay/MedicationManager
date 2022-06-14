@@ -13,6 +13,7 @@ namespace MedicationManager.BusinessLogic.Providers.Mappings
             CreateMap<ProviderProductDocument, ProviderProductDto>()
                 .ForMember(x => x.Medication, opt => opt.Ignore())
                 .ReverseMap();
+
             CreateMap<ProviderFilter, ProviderFilterDto>()
                 .ReverseMap();
         }

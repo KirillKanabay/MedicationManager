@@ -7,11 +7,11 @@ namespace MedicationManager.BusinessLogic.Providers.Contracts
 {
     public interface IProviderProductService
     {
-        public Task<List<MedicationDto>> GetAvailableMedications(ProviderDto provider);
+        public Task<List<MedicationDto>> GetAvailableMedications(string providerId);
         public Task<List<ProviderProductDto>> GetProviderProducts(string providerId);
         public Task<List<ProviderProductDto>> GetProviderProducts(string providerId, ProviderProductFilterDto filter);
-        public Task AddProduct(string providerId, ProviderProductDto providerProduct);
-        public Task DeleteProduct(string providerId, ProviderProductDto providerProductDto);
-        public Task UpdateProduct(string providerId, ProviderProductDto providerProduct);
+        public Task AddProduct(ProviderProductDto providerProduct);
+        public Task DeleteProduct(ProviderProductDto providerProductDto);
+        public Task UpdateProduct(ProviderProductDto providerProduct);
     }
 }

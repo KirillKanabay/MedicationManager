@@ -12,12 +12,12 @@ namespace MedicationManager.BusinessLogic.Providers.Comparers
             if (ReferenceEquals(y, null)) return false;
             if (x.GetType() != y.GetType()) return false;
             
-            return Equals(x.Medication, y.Medication);
+            return Equals(x.MedicationId, y.MedicationId);
         }
 
         public int GetHashCode(ProviderProductDto obj)
         {
-            return (obj.Medication != null ? obj.Medication.GetHashCode() : 0);
+            return (obj.MedicationId != null ? obj.MedicationId.GetHashCode() : 0);
         }
     }
 }

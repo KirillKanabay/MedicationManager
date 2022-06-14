@@ -11,5 +11,9 @@
         public const string ProviderDeletedMessage = "Поставщик успешно удален.";
         public const string ProviderCreatedMessage = "Поставщик успешно добавлен.";
         public const string ProviderEditedMessage = "Поставщик успешно отредактирован.";
+
+        public const string ProviderProductDeletedMessage = "Товар поставщика удален.";
+        public const string ProviderProductCreatedMessage = "Товар поставщика добавлен.";
+        public const string ProviderProductEditedMessage = "Товар поставщика отредактирован.";
     }
 }

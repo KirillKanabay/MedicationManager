@@ -56,14 +56,15 @@
                     IsSynchronizedWithCurrentItem="True"
                     ItemsSource="{Binding Medications}"
                     SelectedItem="{Binding Model.Medication}"
-                    IsEditable="True">
+                    IsEditable="True"
+                    IsEnabled="{Binding ProductEditAllowed}">
                 </ComboBox>
                 <TextBox Margin="0,0,0,15" Width="350px"  Style="{StaticResource InputTextBox}">
                     <materialDesign:HintAssist.Hint>
                         <TextBlock>Стоимость за штуку (BYN)</TextBlock>
                     </materialDesign:HintAssist.Hint>
                     <TextBox.Text>
-                        <Binding Delay="1000" Path="Model.Price" UpdateSourceTrigger="PropertyChanged">
+                        <Binding Delay="300" Path="Model.Price" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <DataErrorValidationRule />
                             </Binding.ValidationRules>
@@ -83,7 +84,7 @@
                     Command="{Binding SaveItemCommand}"
                     Cursor="Hand"
                     FontSize="14"
-                    IsEnabled="{Binding SaveButtonIsEnabled}"
+                    IsEnabled="{Binding Model.IsValid}"
                     Style="{DynamicResource MaterialDesignFlatButton}">
                     Сохранить
                 </Button>

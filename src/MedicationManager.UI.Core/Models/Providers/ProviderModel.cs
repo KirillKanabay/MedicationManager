@@ -69,5 +69,10 @@ namespace MedicationManager.UI.Core.Models.Providers
                 OnPropertyChanged(nameof(AvailableMedications));
             }
         }
+
+        public override string ToString()
+        {
+            return CompanyName;
+        }
     }
 }

@@ -27,18 +27,14 @@ namespace MedicationManager.BusinessLogic.Providers.Services
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<List<MedicationDto>> GetAvailableMedications(ProviderDto provider = null)
+        public async Task<List<MedicationDto>> GetAvailableMedications(string providerId)
         {
             var medications = await _medicationService.ListAllAsync();
             var dtos = _mapper.Map<List<MedicationDto>>(medications);
 
-            if (provider == null)
-            {
-                return dtos;
-            }
-
-            var providerProducts = provider.Products?.Select(x => x.Medication).ToList() ??
-                                   new List<MedicationDto>();
+            var providerProducts = (await GetProviderProducts(providerId))
+                .Select(x => x.Medication)
+                .ToList();
 
             dtos = dtos.Except(providerProducts, new MedicationComparer()).ToList();
 
@@ -51,7 +47,7 @@ namespace MedicationManager.BusinessLogic.Providers.Services
 
             if (provider == null)
             {
-                return null;
+                return new List<ProviderProductDto>();
             }
 
             var providerProducts = provider.Products;
@@ -66,15 +62,15 @@ namespace MedicationManager.BusinessLogic.Providers.Services
             
             if (products == null)
             {
-                return null;
+                return new List<ProviderProductDto>();
             }
 
             return GetProductQuery(products, filter).ToList();
         }
 
-        public async Task AddProduct(string providerId, ProviderProductDto product)
+        public async Task AddProduct(ProviderProductDto product)
         {
-            var provider = await _providerService.GetByIdAsync(providerId);
+            var provider = await _providerService.GetByIdAsync(product.ProviderId);
 
             if (provider == null)
             {
@@ -92,9 +88,9 @@ namespace MedicationManager.BusinessLogic.Providers.Services
             await _providerService.UpdateAsync(provider);
         }
 
-        public async Task DeleteProduct(string providerId, ProviderProductDto product)
+        public async Task DeleteProduct(ProviderProductDto product)
         {
-            var provider = await _providerService.GetByIdAsync(providerId);
+            var provider = await _providerService.GetByIdAsync(product.ProviderId);
 
             if (provider == null)
             {
@@ -105,15 +101,15 @@ namespace MedicationManager.BusinessLogic.Providers.Services
 
             provider.Products = provider
                 .Products
-                .Where(x => new ProviderProductComparer().Equals(x, product))
-                .ToList() ?? new List<ProviderProductDto>();
+                .Where(x => !new ProviderProductComparer().Equals(x, product))
+                .ToList();
 
             await _providerService.UpdateAsync(provider);
         }
 
-        public async Task UpdateProduct(string providerId, ProviderProductDto updatedProduct)
+        public async Task UpdateProduct(ProviderProductDto updatedProduct)
         {
-            var provider = await _providerService.GetByIdAsync(providerId);
+            var provider = await _providerService.GetByIdAsync(updatedProduct.ProviderId);
 
             if (provider == null)
             {
@@ -140,7 +136,7 @@ namespace MedicationManager.BusinessLogic.Providers.Services
 
             if (!filter.Name.IsNullOrWhitespace())
             {
-                var regex = new Regex($"^{filter.Name}.*");
+                var regex = new Regex($"^{filter.Name}.*", RegexOptions.IgnoreCase);
                 query = query.Where(x => x.Medication?.Name != null && regex.IsMatch(x.Medication.Name));
             }
 

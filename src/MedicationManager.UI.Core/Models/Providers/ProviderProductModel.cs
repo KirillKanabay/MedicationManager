@@ -15,6 +15,8 @@ namespace MedicationManager.UI.Core.Models.Providers
         {
         }
 
+        public string ProviderId { get; set; }
+
         public decimal Price
         {
             get => _price;

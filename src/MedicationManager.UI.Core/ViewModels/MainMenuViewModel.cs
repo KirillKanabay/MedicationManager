@@ -23,7 +23,7 @@ namespace MedicationManager.UI.Core.ViewModels
         {
             { MainMenuNames.Medication, _viewModelLocator.Resolve<MedicationControlViewModel>() },
             { MainMenuNames.Provider, _viewModelLocator.Resolve<ProviderControlViewModel>() },
-            { MainMenuNames.ProviderProducts, _viewModelLocator.Resolve<ProviderProductsControlViewModel>() }
+            { MainMenuNames.ProviderProducts, _viewModelLocator.Resolve<ProviderProductControlViewModel>() }
         };
 
         public List<INavigationItem> NavigationItems => new()

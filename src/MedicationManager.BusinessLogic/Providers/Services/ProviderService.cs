@@ -106,10 +106,13 @@ namespace MedicationManager.BusinessLogic.Providers.Services
 
                 foreach (var providerProductDto in dto.Products)
                 {
+                    providerProductDto.ProviderId = dto.Id;
                     providerProductDto.Medication = medications
                         .FirstOrDefault(x => x.Id.Equals(providerProductDto.MedicationId));
                 }
             }
+
+            dto.Products = dto.Products?.Where(x => x.Medication != null).ToList() ?? new List<ProviderProductDto>();
 
             return dto;
         }

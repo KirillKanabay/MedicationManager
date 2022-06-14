@@ -6,10 +6,9 @@ using MedicationManager.UI.Common.Dialogs.DialogControl;
 using MedicationManager.UI.Common.Dialogs.Factories;
 using MedicationManager.UI.Common.Immutable;
 using MedicationManager.UI.Common.ViewModels;
-using MedicationManager.UI.Core.Models.Medications;
 using MedicationManager.UI.Core.Models.Providers;
+using MedicationManager.UI.Core.ViewModels.ProviderProducts;
 using MedicationManager.UI.Core.ViewModels.Providers;
-using MedicationManager.UI.Core.ViewModels.Providers.Import.Creator;
 
 namespace MedicationManager.UI.Core.Factories
 {
@@ -56,17 +55,42 @@ namespace MedicationManager.UI.Core.Factories
             return CreateConfirmDialogView(vm);
         }
 
-        public DialogControlView CreateProviderConcreteProductCreator(ProviderProductCreatorViewModel creatorVm)
+        public DialogControlView CreateProviderProductCreator(IImportObserverViewModel observer, ProviderProductModel productModel)
         {
-            if (creatorVm == null)
+            if (observer == null)
             {
-                throw new ArgumentNullException(nameof(creatorVm));
+                throw new ArgumentNullException(nameof(observer));
             }
 
-            var vm = _viewModelLocator.Resolve<ProviderConcreteProductCreatorViewModel>();
+            if (productModel == null)
+            {
+                throw new ArgumentNullException(nameof(productModel));
+            }
 
-            vm.ProductCreated += creatorVm.OnProductCreated;
+            var vm = _viewModelLocator.Resolve<ProviderProductCreatorViewModel, ProviderProductModel>(productModel);
 
+            vm.ImportCompleted += observer.ImportCompletedHandler;
+
+            return CreateDialogControlView(vm);
+        }
+        
+        public ConfirmDialogView CreateProviderProductDeletionDialog(ProviderProductModel model, Func<Task> deletionCallback)
+        {
+            var vm = new ConfirmDialogViewModel(deletionCallback)
+            {
+                Title = UiConstants.ProviderProducts.DeletionDialogTile,
+                Message = $"{UiConstants.ProviderProducts.DeletionDialogMessage}{model.Medication?.Name ?? UiConstants.UnknownEntity}"
+            };
+
+            return CreateConfirmDialogView(vm);
+        }
+
+        public DialogControlView CreateProviderProductEditor(ProviderProductModel model)
+        {
+            var vm = _viewModelLocator.Resolve<ProviderProductEditorViewModel, ProviderProductModel>(model);
+
+            vm.Bind(model);
+            
             return CreateDialogControlView(vm);
         }
     }
