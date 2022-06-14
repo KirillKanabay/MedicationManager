@@ -77,5 +77,14 @@ namespace MedicationManager.BusinessLogic.Medications.Services
         {
             await _medicationRepository.DeleteAsync(id);
         }
+
+        async Task<MedicationDto> IMedicationService.GetByIdUnsafeAsync(string id)
+        {
+            var medication = await _medicationRepository.GetByIdAsync(id, true);
+
+            var dto = _mapper.Map<MedicationDto>(medication);
+
+            return dto;
+        }
     }
 }

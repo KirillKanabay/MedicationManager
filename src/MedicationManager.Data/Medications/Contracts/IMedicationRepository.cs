@@ -9,7 +9,7 @@ namespace MedicationManager.Data.Medications.Contracts
     {
         Task<List<MedicationDocument>> GetAllMedicationsAsync();
         Task<List<MedicationDocument>> GetMedicationsAsync(MedicationFilter filter);
-        Task<MedicationDocument> GetByIdAsync(string id);
+        Task<MedicationDocument> GetByIdAsync(string id, bool unSafe = false);
         Task UpdateAsync(MedicationDocument document);
         Task AddAsync(MedicationDocument document);
         Task DeleteAsync(string id);

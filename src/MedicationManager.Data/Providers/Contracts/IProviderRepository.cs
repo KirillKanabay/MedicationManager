@@ -9,7 +9,7 @@ namespace MedicationManager.Data.Providers.Contracts
     {
         Task<List<ProviderDocument>> GetAllProvidersAsync();
         Task<List<ProviderDocument>> GetProvidersAsync(ProviderFilter filter);
-        Task<ProviderDocument> GetByIdAsync(string id);
+        Task<ProviderDocument> GetByIdAsync(string id, bool unSafe = false);
         Task UpdateAsync(ProviderDocument document);
         Task AddAsync(ProviderDocument document);
         Task DeleteAsync(string id);

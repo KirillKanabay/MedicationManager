@@ -35,7 +35,7 @@ namespace MedicationManager.Data.Providers.Repositories
                 if (filter.CompanyName.Count == 1)
                 {
                     var companyName = filter.CompanyName.First();
-                    var regex = new Regex($"^.*{companyName}.*", RegexOptions.IgnoreCase);
+                    var regex = new Regex($"^{companyName}.*", RegexOptions.IgnoreCase);
                     query = query.Where(x => regex.IsMatch(x.CompanyName));
                 }
                 else
