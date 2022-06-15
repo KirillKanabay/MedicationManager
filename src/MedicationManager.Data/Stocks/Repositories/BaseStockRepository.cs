@@ -13,7 +13,7 @@ namespace MedicationManager.Data.Stocks.Repositories
         protected BaseStockRepository(IDbContext dbContext) : base(dbContext)
         {
         }
-
+        
         public Task<List<TStockDocument>> GetAllAsync()
         {
             return base.ListAllAsync();

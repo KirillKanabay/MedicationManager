@@ -24,6 +24,8 @@ namespace MedicationManager.UI
             services.AddSingleton<ViewModelLocator>();
             services.AddSingleton<MedicationDialogFactory>();
             services.AddSingleton<ProviderDialogFactory>();
+            services.AddSingleton<StockDialogFactory>();
+
             services.AddSingleton<ISnackbarMessageQueue, SnackbarMessageQueue>();
 
             services.RegisterDatabase(_configuration);

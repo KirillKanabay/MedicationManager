@@ -26,7 +26,7 @@ namespace MedicationManager.BusinessLogic.Stock.Services
             _stockRepository = stockRepository;
         }
 
-        public async Task<List<TStockDto>> ListAllAsync()
+        public virtual async Task<List<TStockDto>> ListAllAsync()
         {
             var documents = await _stockRepository.GetAllAsync();
 
@@ -35,7 +35,7 @@ namespace MedicationManager.BusinessLogic.Stock.Services
             return dtos;
         }
 
-        public async Task<TStockDto> GetByIdAsync(string id)
+        public virtual async Task<TStockDto> GetByIdAsync(string id)
         {
             var document = await _stockRepository.GetByIdAsync(id);
 
@@ -44,21 +44,21 @@ namespace MedicationManager.BusinessLogic.Stock.Services
             return dto;
         }
 
-        public async Task UpdateAsync(TStockDto dto)
+        protected virtual async Task UpdateAsync(TStockDto dto)
         {
             var document = _mapper.Map<TStockDocument>(dto);
 
             await _stockRepository.UpdateAsync(document);
         }
 
-        public async Task AddAsync(TStockDto dto)
+        public virtual async Task AddAsync(TStockDto dto)
         {
             var document = _mapper.Map<TStockDocument>(dto);
 
-            await _stockRepository.UpdateAsync(document);
+            await _stockRepository.AddAsync(document);
         }
 
-        public async Task DeleteAsync(string id)
+        protected virtual async Task DeleteAsync(string id)
         {
             await _stockRepository.DeleteAsync(id);
         }

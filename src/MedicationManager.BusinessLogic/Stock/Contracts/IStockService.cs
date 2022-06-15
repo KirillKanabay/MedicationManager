@@ -9,8 +9,6 @@ namespace MedicationManager.BusinessLogic.Stock.Contracts
     {
         Task<List<TStockDto>> ListAllAsync();
         Task<TStockDto> GetByIdAsync(string id);
-        Task UpdateAsync(TStockDto dto);
         Task AddAsync(TStockDto dto);
-        Task DeleteAsync(string id);
     }
 }

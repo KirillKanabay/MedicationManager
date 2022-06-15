@@ -7,7 +7,7 @@ namespace MedicationManager.Data.Stocks.Contracts
     public interface IStockRepository<TStockDocument> where TStockDocument : BaseStockDocument
     {
         Task<List<TStockDocument>> GetAllAsync();
-        Task<TStockDocument> GetByIdAsync(string id);
+        Task<TStockDocument> GetByIdAsync(string id, bool unSafe = false);
         Task UpdateAsync(TStockDocument document);
         Task AddAsync(TStockDocument document);
         Task DeleteAsync(string id);

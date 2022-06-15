@@ -36,5 +36,10 @@ namespace MedicationManager.UI.Core.Models.Providers
                 OnPropertyChanged(nameof(Medication));
             }
         }
+
+        public override string ToString()
+        {
+            return Medication.Name;
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace MedicationManager.Data.Stocks.Documents
         public DateTime Date { get; set; }
         public string MedicationId { get; set; }
         public int Count { get; set; }
-        public int PricePerItem { get; set; }
-        public int TotalPrice { get; set; }
+        public decimal PricePerItem { get; set; }
+        public decimal TotalPrice { get; set; }
     }
 }

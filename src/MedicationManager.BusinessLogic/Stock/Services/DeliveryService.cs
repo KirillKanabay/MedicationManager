@@ -13,10 +13,21 @@ namespace MedicationManager.BusinessLogic.Stock.Services
     public class DeliveryService : BaseStockService<DeliveryDto, DeliveryDocument>, IDeliveryService
     {
         private readonly IProviderService _providerService;
+        private readonly IMedicationService _medicationService;
 
         public DeliveryService(IMapper mapper, IMedicationService medicationService, IDeliveryRepository deliveryRepository, IProviderService providerService) : base(mapper, medicationService, deliveryRepository)
         {
+            _medicationService = medicationService;
             _providerService = providerService;
+        }
+
+        public override async Task AddAsync(DeliveryDto dto)
+        {
+            await _medicationService.AddCountAsync(dto.MedicationId, dto.Count);
+
+            dto.TotalPrice = dto.Count * dto.PricePerItem;
+
+            await base.AddAsync(dto);
         }
 
         protected override async Task<DeliveryDto> ToDto(DeliveryDocument document)
