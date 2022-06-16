@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:converters="clr-namespace:MedicationManager.UI.Common.Converters;assembly=MedicationManager.UI.Common"
              mc:Ignorable="d" 
              Background="#FFFAFAFA"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -125,6 +126,10 @@
                     <materialDesign:DataGridTextColumn
                         Binding="{Binding Model.Count}"
                         Header="Количество на складе"
+                        IsReadOnly="True" />
+                    <materialDesign:DataGridTextColumn
+                        Binding="{Binding Model.ReceiptRequired}"
+                        Header="Наличие рецепта"
                         IsReadOnly="True" />
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
