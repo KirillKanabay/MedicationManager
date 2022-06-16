@@ -11,7 +11,7 @@ namespace MedicationManager.UI.Core.Models.Medications
         private string _description;
         private string _manufacturer;
         private bool _receiptRequired;
-        private decimal _price;
+        private int _count;
         protected override IValidationContext ValidationContext => new ValidationContext<MedicationModel>(this);
 
         public MedicationModel() : base(new MedicationModelValidator())
@@ -68,13 +68,13 @@ namespace MedicationManager.UI.Core.Models.Medications
             }
         }
 
-        public decimal Price
+        public int Count
         {
-            get => _price;
+            get => _count;
             set
             {
-                _price = value;
-                OnPropertyChanged(nameof(Price));
+                _count = value;
+                OnPropertyChanged(nameof(Count));
             }
         }
 

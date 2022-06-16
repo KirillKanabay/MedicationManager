@@ -27,9 +27,9 @@ namespace MedicationManager.Data.Common.BaseRepositories
 
         protected IMongoCollection<TDocument> Collection => DbContext.GetCollection<TDocument>(CollectionName);
 
-        public virtual Task<TDocument> GetByIdAsync(string id)
+        public virtual Task<TDocument> GetByIdAsync(string id, bool unSafe = false)
         {
-            var query = GetQuery();
+            var query = GetQuery(unSafe);
 
             return query.FirstOrDefaultAsync(document => document.Id.Equals(id));
         }

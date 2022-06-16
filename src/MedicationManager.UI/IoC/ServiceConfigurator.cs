@@ -3,16 +3,22 @@ using MedicationManager.BusinessLogic.Medications.Contracts;
 using MedicationManager.BusinessLogic.Medications.Services;
 using MedicationManager.BusinessLogic.Providers.Contracts;
 using MedicationManager.BusinessLogic.Providers.Services;
+using MedicationManager.BusinessLogic.Stock.Contracts;
+using MedicationManager.BusinessLogic.Stock.Services;
 using MedicationManager.Data.Medications.Contracts;
 using MedicationManager.Data.Medications.Repositories;
 using MedicationManager.Data.Providers.Contracts;
 using MedicationManager.Data.Providers.Repositories;
+using MedicationManager.Data.Stocks.Contracts;
+using MedicationManager.Data.Stocks.Repositories;
 using MedicationManager.Infrastructure.Configurations;
 using MedicationManager.Infrastructure.Contexts;
 using MedicationManager.UI.Core.ViewModels;
 using MedicationManager.UI.Core.ViewModels.Medications;
 using MedicationManager.UI.Core.ViewModels.ProviderProducts;
 using MedicationManager.UI.Core.ViewModels.Providers;
+using MedicationManager.UI.Core.ViewModels.Stocks.Deliveries;
+using MedicationManager.UI.Core.ViewModels.Stocks.WriteOffs;
 using MedicationManager.UI.Views;
 using MedicationManager.UI.Views.ProviderProducts;
 using MedicationManager.UI.Views.Providers;
@@ -33,12 +39,6 @@ namespace MedicationManager.UI.IoC
             });
 
             services.AddSingleton<IDbContext, BaseMongoDbContext>();
-        }
-
-        public static void RegisterRepositories(this IServiceCollection services)
-        {
-            services.AddSingleton<IMedicationRepository, MedicationRepository>();
-            services.AddSingleton<IProviderRepository, ProviderRepository>();
         }
         
         public static void RegisterViewModels(this IServiceCollection services)
@@ -61,7 +61,11 @@ namespace MedicationManager.UI.IoC
             services.AddTransient<ProviderProductCreatorViewModel>();
             services.AddTransient<ProviderProductSelectableItemViewModel>();
 
-            services.AddTransient<ProviderProductControlViewModel>();
+            services.AddTransient<DeliveryControlViewModel>();
+            services.AddTransient<DeliveryCreatorViewModel>();
+
+            services.AddTransient<WriteOffControlViewModel>();
+            services.AddTransient<WriteOffCreatorViewModel>();
         }
 
         public static void RegisterWindows(this IServiceCollection services)
@@ -81,6 +85,16 @@ namespace MedicationManager.UI.IoC
             services.AddSingleton<IMedicationService, MedicationService>();
             services.AddSingleton<IProviderService, ProviderService>();
             services.AddSingleton<IProviderProductService, ProviderProductService>();
+            services.AddSingleton<IDeliveryService, DeliveryService>();
+            services.AddSingleton<IWriteOffService, WriteOffService>();
+        }
+
+        public static void RegisterRepositories(this IServiceCollection services)
+        {
+            services.AddSingleton<IMedicationRepository, MedicationRepository>();
+            services.AddSingleton<IProviderRepository, ProviderRepository>();
+            services.AddSingleton<IDeliveryRepository, DeliveryRepository>();
+            services.AddSingleton<IWriteOffRepository, WriteOffRepository>();
         }
 
         public static void RegisterMappers(this IServiceCollection services)

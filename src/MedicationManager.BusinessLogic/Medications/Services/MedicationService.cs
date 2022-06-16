@@ -7,6 +7,7 @@ using MedicationManager.BusinessLogic.Medications.Dtos;
 using MedicationManager.Data.Medications.Contracts;
 using MedicationManager.Data.Medications.Documents;
 using MedicationManager.Data.Medications.Filters;
+using SharpCompress.Common;
 
 namespace MedicationManager.BusinessLogic.Medications.Services
 {
@@ -76,6 +77,48 @@ namespace MedicationManager.BusinessLogic.Medications.Services
         public async Task DeleteAsync(string id)
         {
             await _medicationRepository.DeleteAsync(id);
+        }
+
+        public async Task AddCountAsync(string id, int count)
+        {
+            var medication = await GetByIdAsync(id);
+
+            if (medication == null)
+            {
+                throw new ArchiveException(nameof(id));
+            }
+
+            medication.Count += count;
+
+            await UpdateAsync(medication);
+        }
+
+        public async Task SubtractCountAsync(string id, int count)
+        {
+            var medication = await GetByIdAsync(id);
+
+            if (medication == null)
+            {
+                throw new ArgumentException(nameof(id));
+            }
+
+            if (medication.Count < count)
+            {
+                throw new ArgumentException("Subtraction count should be greater than count of medication", nameof(count));
+            }
+
+            medication.Count -= count;
+
+            await UpdateAsync(medication);
+        }
+
+        async Task<MedicationDto> IMedicationService.GetByIdUnsafeAsync(string id)
+        {
+            var medication = await _medicationRepository.GetByIdAsync(id, true);
+
+            var dto = _mapper.Map<MedicationDto>(medication);
+
+            return dto;
         }
     }
 }

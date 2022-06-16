@@ -8,7 +8,7 @@ namespace MedicationManager.BusinessLogic.Medications.Dtos
         public string Description { get; set; }
         public string Manufacturer { get; set; }
         public bool ReceiptRequired { get; set; }
-        public decimal Price { get; set; }
+        public int Count { get; set; }
 
         public override int GetHashCode()
         {

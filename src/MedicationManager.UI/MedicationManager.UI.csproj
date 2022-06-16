@@ -20,6 +20,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\MedicationManager.UI.Common\MedicationManager.UI.Common.csproj" />
 		<ProjectReference Include="..\MedicationManager.UI.Core\MedicationManager.UI.Core.csproj" />
 	</ItemGroup>
 

@@ -82,6 +82,15 @@ namespace MedicationManager.BusinessLogic.Providers.Services
             await _providerRepository.DeleteAsync(id);
         }
 
+        async Task<ProviderDto> IProviderService.GetByIdUnsafeAsync(string id)
+        {
+            var provider = await _providerRepository.GetByIdAsync(id, true);
+
+            var dto = await ToDto(provider);
+
+            return dto;
+        }
+
         private async Task<List<ProviderDto>> ToDto(List<ProviderDocument> documents)
         {
             var tasks = documents.Select(ToDto);

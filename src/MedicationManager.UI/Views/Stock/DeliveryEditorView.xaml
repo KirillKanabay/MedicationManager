@@ -1,0 +1,136 @@
+﻿<UserControl x:Class="MedicationManager.UI.Views.Stock.DeliveryEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MedicationManager.UI.Views.Stock"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="400"
+             d:DesignWidth="450"
+             Background="#FFFAFAFA"
+             FontFamily="Google Sans"
+             mc:Ignorable="d">
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:InvokeCommandAction Command="{Binding OnLoadCommand}" />
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/TextBoxStyles.xaml" />
+                <ResourceDictionary Source="../../Styles/ToggleButtonStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <materialDesign:DialogHost
+        CloseOnClickAway="True"
+        Identifier="InnerDialogRoot">
+        <Grid
+            Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Label
+                Grid.Row="0"
+                Margin="0,0,0,0"
+                VerticalAlignment="Top"
+                FontSize="18"
+                FontWeight="Bold"
+                Content="{Binding Title}">
+            </Label>
+            <StackPanel
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="0,0,0,30">
+                <ComboBox
+                    Margin="0,0,0,15"
+                    Width="350px"
+                    materialDesign:HintAssist.Hint="Поставщик"
+                    Style="{StaticResource InputComboBox}"
+                    IsSynchronizedWithCurrentItem="True"
+                    ItemsSource="{Binding Providers}"
+                    SelectedItem="{Binding Model.Provider}"
+                    IsEditable="True">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="SelectionChanged">
+                            <b:InvokeCommandAction Command="{Binding OnProviderSelection}" />
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </ComboBox>
+                <!--  Medication  -->
+                <ComboBox
+                    Margin="0,0,0,15"
+                    Width="350px"
+                    materialDesign:HintAssist.Hint="Медикамент"
+                    Style="{StaticResource InputComboBox}"
+                    IsSynchronizedWithCurrentItem="True"
+                    ItemsSource="{Binding Products}"
+                    SelectedItem="{Binding SelectedProduct}"
+                    IsEditable="True">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="SelectionChanged">
+                            <b:InvokeCommandAction Command="{Binding OnProductSelection}" />
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </ComboBox>
+                <TextBox Margin="0,0,0,15" Width="350px"  Style="{StaticResource InputTextBox}">
+                    <materialDesign:HintAssist.Hint>
+                        <TextBlock>Количество</TextBlock>
+                    </materialDesign:HintAssist.Hint>
+                    <TextBox.Text>
+                        <Binding Path="Model.Count" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <DatePicker
+                    Width="350px"
+                    materialDesign:HintAssist.Hint="Дата поставки"
+                    materialDesign:HintAssist.FloatingScale ="0.9"
+                    FontSize="14"
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" >
+                    <DatePicker.SelectedDate>
+                        <Binding Path="Model.Date" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </DatePicker.SelectedDate>
+                </DatePicker>
+            </StackPanel>
+            <StackPanel
+                Grid.Row="2"
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Orientation="Horizontal">
+                <Button
+                    Margin="0,0,5,10"
+                    HorizontalAlignment="Right"
+                    Command="{Binding SaveItemCommand}"
+                    Cursor="Hand"
+                    FontSize="14"
+                    IsEnabled="{Binding Model.IsValid}"
+                    Style="{DynamicResource MaterialDesignFlatButton}">
+                    Сохранить
+                </Button>
+                <Button
+                    Margin="0,0,5,10"
+                    HorizontalAlignment="Right"
+                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                    Cursor="Hand"
+                    FontSize="14"
+                    IsDefault="True"
+                    Style="{DynamicResource MaterialDesignFlatButton}">
+                    Назад
+                </Button>
+            </StackPanel>
+        </Grid>
+    </materialDesign:DialogHost>
+</UserControl>

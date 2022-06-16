@@ -121,6 +121,9 @@
                     </TextBox>
                 </Grid>
             </Border>
+            <Label Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="13" Margin="0 5 0 0">
+                Выберите поставщика чтобы продолжить!
+            </Label>
             <DataGrid
                 Grid.Row="2"
                 MinWidth="500"

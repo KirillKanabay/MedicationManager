@@ -119,22 +119,6 @@
                             IsChecked="{Binding Model.ReceiptRequired}" />
                     </Grid>
                 </Border>
-                <TextBox Margin="0,8,0,20" Style="{StaticResource InputTextBox}">
-                    <materialDesign:HintAssist.Hint>
-                        <TextBlock>Cтоимость (BYN)</TextBlock>
-                    </materialDesign:HintAssist.Hint>
-                    <TextBox.Text>
-                        <Binding
-                            Mode="TwoWay"
-                            Path="Model.Price"
-                            UpdateSourceTrigger="PropertyChanged"
-                            Delay="1000">
-                            <Binding.ValidationRules>
-                                <DataErrorValidationRule />
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
             </StackPanel>
             <StackPanel
                 Grid.Row="2"
@@ -156,7 +140,7 @@
                     Command="{Binding SaveItemCommand}"
                     Cursor="Hand"
                     FontSize="14"
-                    IsEnabled="{Binding SaveButtonIsEnabled}"
+                    IsEnabled="{Binding Model.IsValid}"
                     Style="{DynamicResource MaterialDesignFlatButton}">
                     Сохранить
                 </Button>

@@ -12,5 +12,7 @@ namespace MedicationManager.BusinessLogic.Providers.Contracts
         Task UpdateAsync(ProviderDto dto);
         Task AddAsync(ProviderDto dto);
         Task DeleteAsync(string id);
+
+        internal Task<ProviderDto> GetByIdUnsafeAsync(string id);
     }
 }

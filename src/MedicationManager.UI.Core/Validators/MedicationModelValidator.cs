@@ -16,10 +16,6 @@ namespace MedicationManager.UI.Core.Validators
             RuleFor(x => x.Manufacturer)
                 .NotEmpty()
                 .WithMessage(ValidationErrors.EmptyField);
-
-            RuleFor(x => x.Price)
-                .GreaterThan(0)
-                .WithMessage(ValidationErrors.Medications.InvalidPrice);
         }
     }
 }

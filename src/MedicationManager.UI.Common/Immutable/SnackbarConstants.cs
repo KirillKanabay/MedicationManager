@@ -15,5 +15,8 @@
         public const string ProviderProductDeletedMessage = "Товар поставщика удален.";
         public const string ProviderProductCreatedMessage = "Товар поставщика добавлен.";
         public const string ProviderProductEditedMessage = "Товар поставщика отредактирован.";
+
+        public const string DeliveryCreatedMessage = "Поставка успешно зарегистрирована";
+        public const string WriteOffCreatedMessage = "Списание успешно зарегистрирована";
     }
 }
