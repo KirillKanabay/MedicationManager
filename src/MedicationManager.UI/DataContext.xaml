@@ -1,0 +1,52 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:medications="clr-namespace:MedicationManager.UI.Core.ViewModels.Medications;assembly=MedicationManager.UI.Core"
+                    xmlns:views="clr-namespace:MedicationManager.UI.Views"
+                    xmlns:medicationViews="clr-namespace:MedicationManager.UI.Views.Medications"
+                    xmlns:providers="clr-namespace:MedicationManager.UI.Core.ViewModels.Providers;assembly=MedicationManager.UI.Core"
+                    xmlns:providersViews="clr-namespace:MedicationManager.UI.Views.Providers"
+                    xmlns:providerProducts="clr-namespace:MedicationManager.UI.Core.ViewModels.ProviderProducts;assembly=MedicationManager.UI.Core"
+                    xmlns:providerProducts1="clr-namespace:MedicationManager.UI.Views.ProviderProducts"
+                    xmlns:deliveries="clr-namespace:MedicationManager.UI.Core.ViewModels.Stocks.Deliveries;assembly=MedicationManager.UI.Core"
+                    xmlns:stock="clr-namespace:MedicationManager.UI.Views.Stock"
+                    xmlns:writeOffs="clr-namespace:MedicationManager.UI.Core.ViewModels.Stocks.WriteOffs;assembly=MedicationManager.UI.Core">
+    <DataTemplate DataType="{x:Type medications:MedicationControlViewModel}">
+        <views:MedicationsControlView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type medications:MedicationCreatorViewModel}">
+        <medicationViews:MedicationEditorView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type medications:MedicationEditorViewModel}">
+        <medicationViews:MedicationEditorView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type providers:ProviderControlViewModel}">
+        <providersViews:ProvidersControlView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type providers:ProviderCreatorViewModel}">
+        <providersViews:ProviderEditorView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type providers:ProviderEditorViewModel}">
+        <providersViews:ProviderEditorView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type providerProducts:ProviderProductCreatorViewModel}">
+        <providersViews:ProviderConcreteProductImportView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type providerProducts:ProviderProductEditorViewModel}">
+        <providersViews:ProviderConcreteProductImportView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type providerProducts:ProviderProductControlViewModel}">
+        <providerProducts1:ProviderProductsControlView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type deliveries:DeliveryControlViewModel}">
+        <stock:DeliveryControlView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type deliveries:DeliveryCreatorViewModel}">
+        <stock:DeliveryEditorView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type writeOffs:WriteOffControlViewModel}">
+        <stock:WriteOffControlView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type writeOffs:WriteOffCreatorViewModel}">
+        <stock:WriteOffEditorView/>
+    </DataTemplate>
+</ResourceDictionary>
