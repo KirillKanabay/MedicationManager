@@ -126,7 +126,7 @@
                         Binding="{Binding Model.Count}"
                         Header="Количество на складе"
                         IsReadOnly="True" />
-                    <DataGridTemplateColumn Header="Редактировать">
+                    <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Command="{Binding EditItemCommand}" Style="{StaticResource TransparentButton}">
@@ -138,7 +138,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Удалить">
+                    <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Command="{Binding DeleteItemCommand}" Style="{StaticResource TransparentButton}">

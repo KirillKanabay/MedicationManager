@@ -96,7 +96,7 @@
                     FontSize="14"
                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}" >
                     <DatePicker.SelectedDate>
-                        <Binding Path="Model.Count" UpdateSourceTrigger="PropertyChanged">
+                        <Binding Path="Model.Date" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <DataErrorValidationRule />
                             </Binding.ValidationRules>

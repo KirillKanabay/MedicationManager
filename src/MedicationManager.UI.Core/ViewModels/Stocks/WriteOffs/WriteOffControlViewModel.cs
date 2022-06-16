@@ -20,7 +20,7 @@ namespace MedicationManager.UI.Core.ViewModels.Stocks.WriteOffs
 
         protected override async Task OpenCreatorDialog()
         {
-            var dialog = DialogFactory.CreateDeliveryCreator(this);
+            var dialog = DialogFactory.CreateWriteOffCreator(this);
 
             await DialogHost.Show(dialog, HostRoots.DialogRoot);
         }

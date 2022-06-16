@@ -43,7 +43,10 @@
     <DataTemplate DataType="{x:Type deliveries:DeliveryCreatorViewModel}">
         <stock:DeliveryEditorView/>
     </DataTemplate>
-    <!--<DataTemplate DataType="{x:Type writeOffs:WriteOffControlViewModel}">
-        <stock:DeliveryControlView/>
-    </DataTemplate-->
+    <DataTemplate DataType="{x:Type writeOffs:WriteOffControlViewModel}">
+        <stock:WriteOffControlView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type writeOffs:WriteOffCreatorViewModel}">
+        <stock:WriteOffEditorView/>
+    </DataTemplate>
 </ResourceDictionary>

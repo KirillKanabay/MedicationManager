@@ -55,10 +55,10 @@
             </Grid.RowDefinitions>
             <Button
                 Grid.Row="0"
-                Width="180"
+                Width="230"
                 HorizontalAlignment="Left"
                 Command="{Binding OpenCreatorDialogCommand}"
-                Content="Добавить поставку"
+                Content="Зарегистрировать поставку"
                 Cursor="Hand" />
             <DataGrid
                 Grid.Row="1"

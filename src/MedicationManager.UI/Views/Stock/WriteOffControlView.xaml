@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="MedicationManager.UI.Views.Providers.ProvidersControlView"
+﻿<UserControl x:Class="MedicationManager.UI.Views.Stock.WriteOffControlView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MedicationManager.UI.Views.Providers"
+             xmlns:local="clr-namespace:MedicationManager.UI.Views.Stock"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
@@ -55,51 +55,11 @@
             </Grid.RowDefinitions>
             <Button
                 Grid.Row="0"
-                Width="180"
+                Width="230"
                 HorizontalAlignment="Left"
                 Command="{Binding OpenCreatorDialogCommand}"
-                Content="Добавить поставщика"
+                Content="Зарегистрировать списание"
                 Cursor="Hand" />
-            <Border
-                Grid.Row="0"
-                Width="300"
-                Padding="5,3"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                BorderBrush="#BABABA"
-                BorderThickness="1,1,1,1"
-                CornerRadius="3"
-                ToolTip="Введите название компании">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Button
-                        x:Name="SearchButton"
-                        Width="24"
-                        Height="24"
-                        Command="{Binding FilterItemsCommand}"
-                        CommandParameter="{Binding ElementName=SearchBox, Path=Text}"
-                        Style="{DynamicResource MaterialDesignToolButton}">
-                        <materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
-                    </Button>
-                    <TextBox
-                        x:Name="SearchBox"
-                        Grid.Column="1"
-                        MinWidth="200"
-                        Margin="5,0,0,0"
-                        VerticalAlignment="Center"
-                        materialDesign:HintAssist.Hint="Введите название компании"
-                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        BorderThickness="0"
-                        Text="{Binding Filter.CompanyName, UpdateSourceTrigger=PropertyChanged}">
-                        <TextBox.InputBindings>
-                            <KeyBinding Command="{Binding Path=FilterItemsCommand}" Key="Enter" />
-                        </TextBox.InputBindings>
-                    </TextBox>
-                </Grid>
-            </Border>
             <DataGrid
                 Grid.Row="1"
                 MinWidth="500"
@@ -112,45 +72,29 @@
                 CanUserSortColumns="True"
                 ColumnWidth="*"
                 HorizontalScrollBarVisibility="Auto"
-                ItemsSource="{Binding Providers}"
+                ItemsSource="{Binding Items}"
                 VerticalScrollBarVisibility="Visible">
                 <DataGrid.Columns>
                     <materialDesign:DataGridTextColumn
-                        Binding="{Binding Model.CompanyName}"
-                        Header="Название компании"
+                        Binding="{Binding Medication.Name}"
+                        Header="Медикамент"
                         IsReadOnly="True" />
                     <materialDesign:DataGridTextColumn
-                        Binding="{Binding Model.Director}"
-                        Header="Директор"
+                        Binding="{Binding Date, StringFormat=d}"
+                        Header="Дата"
                         IsReadOnly="True" />
                     <materialDesign:DataGridTextColumn
-                        Binding="{Binding Model.Address}"
-                        Header="Адрес"
+                        Binding="{Binding Count}"
+                        Header="Количество"
                         IsReadOnly="True" />
-                    <DataGridTemplateColumn>
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Command="{Binding EditItemCommand}" Style="{StaticResource TransparentButton}">
-                                    <materialDesign:PackIcon
-                                        Width="18"
-                                        Height="18"
-                                        Kind="Edit" />
-                                </Button>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn>
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Command="{Binding DeleteItemCommand}" Style="{StaticResource TransparentButton}">
-                                    <materialDesign:PackIcon
-                                        Width="18"
-                                        Height="18"
-                                        Kind="Trash" />
-                                </Button>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                    <materialDesign:DataGridTextColumn
+                        Binding="{Binding PricePerItem}"
+                        Header="Стоимость за ед."
+                        IsReadOnly="True" />
+                    <materialDesign:DataGridTextColumn
+                        Binding="{Binding TotalPrice}"
+                        Header="Общая стоимость"
+                        IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>
 
