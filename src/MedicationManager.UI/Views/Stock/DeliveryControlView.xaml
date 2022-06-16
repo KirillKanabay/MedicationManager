@@ -84,7 +84,7 @@
                         Header="Поставщик"
                         IsReadOnly="True" />
                     <materialDesign:DataGridTextColumn
-                        Binding="{Binding Date}"
+                        Binding="{Binding Date, StringFormat=d}"
                         Header="Дата"
                         IsReadOnly="True" />
                     <materialDesign:DataGridTextColumn

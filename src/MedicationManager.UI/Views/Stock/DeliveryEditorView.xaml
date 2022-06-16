@@ -94,8 +94,15 @@
                     materialDesign:HintAssist.Hint="Дата поставки"
                     materialDesign:HintAssist.FloatingScale ="0.9"
                     FontSize="14"
-                    SelectedDate="{Binding Model.Date}"
-                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" >
+                    <DatePicker.SelectedDate>
+                        <Binding Path="Model.Count" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </DatePicker.SelectedDate>
+                </DatePicker>
             </StackPanel>
             <StackPanel
                 Grid.Row="2"
