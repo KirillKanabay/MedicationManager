@@ -53,6 +53,46 @@
                 <RowDefinition />
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
+            <Border
+                Grid.Row="0"
+                Width="300"
+                Padding="5,3"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                BorderBrush="#BABABA"
+                BorderThickness="1,1,1,1"
+                CornerRadius="3"
+                ToolTip="Введите название медикамента">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        x:Name="SearchButton"
+                        Width="24"
+                        Height="24"
+                        Command="{Binding FilterItemsCommand}"
+                        CommandParameter="{Binding ElementName=SearchBox, Path=Text}"
+                        Style="{DynamicResource MaterialDesignToolButton}">
+                        <materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
+                    </Button>
+                    <TextBox
+                        x:Name="SearchBox"
+                        Grid.Column="1"
+                        MinWidth="200"
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Введите название медикамента"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                        BorderThickness="0"
+                        Text="{Binding Filter.Name, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding Path=FilterItemsCommand}" Key="Enter" />
+                        </TextBox.InputBindings>
+                    </TextBox>
+                </Grid>
+            </Border>
             <Button
                 Grid.Row="0"
                 Width="230"

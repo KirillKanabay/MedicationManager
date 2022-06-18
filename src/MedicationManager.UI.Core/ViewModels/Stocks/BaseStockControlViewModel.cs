@@ -6,6 +6,7 @@ using AutoMapper;
 using MaterialDesignThemes.Wpf;
 using MedicationManager.BusinessLogic.Stock.Contracts;
 using MedicationManager.BusinessLogic.Stock.Dtos;
+using MedicationManager.BusinessLogic.Stock.Filters;
 using MedicationManager.Infrastructure.Extensions;
 using MedicationManager.UI.Common;
 using MedicationManager.UI.Common.Commands;
@@ -35,17 +36,31 @@ namespace MedicationManager.UI.Core.ViewModels.Stocks
             Items = new ObservableCollection<TStockModel>();
             MessageQueue = messageQueue;
             Service = service;
+            Filter = new StockFilterModel();
         }
 
         public virtual ObservableCollection<TStockModel> Items { get; }
         public ISnackbarMessageQueue MessageQueue { get; }
+        public StockFilterModel Filter { get; }
 
         public TaskBasedCommand OnLoadCommand => new(GetItems);
         public TaskBasedCommand OpenCreatorDialogCommand => new(OpenCreatorDialog);
+        public TaskBasedCommand FilterItemsCommand => new(FilterItems);
 
         public async void ImportCompletedHandler(object? sender, EventArgs e)
         {
             await GetItems();
+        }
+
+        protected virtual async Task FilterItems()
+        {
+            var filterDto = Mapper.Map<StockFilterDto>(Filter);
+
+            var dtos = await Service.ListAsync(filterDto);
+
+            var models = Mapper.Map<List<TStockModel>>(dtos);
+
+            Items.Assign(models);
         }
 
         protected virtual async Task GetItems()
