@@ -4,6 +4,7 @@
     {
         public static string EmptyField = "Данное поле не может быть пустым";
         public static string FutureDate = "Дата не может быть позже чем сегодня";
+        public static string ComboBoxEmptyValue = "Выберите значение из выпадающего списка";
         public static class Medications
         {
             public static string InvalidPrice = "Стоимость должна быть больше 0 BYN";

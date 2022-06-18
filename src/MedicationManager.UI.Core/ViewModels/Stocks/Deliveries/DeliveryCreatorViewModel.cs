@@ -36,29 +36,9 @@ namespace MedicationManager.UI.Core.ViewModels.Stocks.Deliveries
 
         public ObservableCollection<ProviderModel> Providers { get; }
         public ObservableCollection<ProviderProductModel> Products { get; }
-
-        public ProviderProductModel SelectedProduct
-        {
-            get => _selectedProduct;
-            set
-            {
-                _selectedProduct = value;
-                OnPropertyChanged(nameof(SelectedProduct));
-            }
-        }
-
+        
         public TaskBasedCommand OnProviderSelection => new(LoadProducts);
-        public DelegateCommand OnProductSelection => new(HandleProviderProductSelection);
-
-        protected void HandleProviderProductSelection(object param)
-        {
-            if (SelectedProduct != null)
-            {
-                Model.Medication = SelectedProduct.Medication;
-                Model.MedicationId = SelectedProduct.Medication.Id;
-            }
-        }
-
+        
         protected override async Task LoadHandler()
         {
             var dtos = await _providerService.ListAllAsync();
@@ -91,7 +71,7 @@ namespace MedicationManager.UI.Core.ViewModels.Stocks.Deliveries
 
             dto.ProviderId = dto.Provider.Id;
             dto.MedicationId = dto.Medication.Id;
-            dto.PricePerItem = SelectedProduct.Price;
+            dto.PricePerItem = Model.SelectedProduct.Price;
 
             await Service.AddAsync(dto);
 

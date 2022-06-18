@@ -8,6 +8,7 @@ using MedicationManager.BusinessLogic.Medications.Contracts;
 using MedicationManager.BusinessLogic.Stock.Contracts;
 using MedicationManager.BusinessLogic.Stock.Dtos;
 using MedicationManager.Infrastructure.Extensions;
+using MedicationManager.UI.Common.Commands;
 using MedicationManager.UI.Common.Immutable;
 using MedicationManager.UI.Core.Models.Medications;
 using MedicationManager.UI.Core.Models.Stock;
@@ -29,6 +30,14 @@ namespace MedicationManager.UI.Core.ViewModels.Stocks.WriteOffs
         protected override string CreatedMessage => SnackbarConstants.WriteOffCreatedMessage;
 
         public ObservableCollection<MedicationModel> Products { get; }
+
+        public DelegateCommand OnProductSelection => new(ProductSelectionHandler);
+
+        private void ProductSelectionHandler(object param)
+        {
+            Model.Count = 0;
+            Model.PricePerItem = 0;
+        }
 
         protected override async Task LoadHandler()
         {

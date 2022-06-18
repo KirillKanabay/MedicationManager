@@ -17,11 +17,15 @@ namespace MedicationManager.UI.Core.Validators.Stocks
 
             RuleFor(x => x.Provider)
                 .NotNull()
-                .WithMessage(ValidationErrors.EmptyField);
+                .WithMessage(ValidationErrors.ComboBoxEmptyValue);
 
             RuleFor(x => x.Medication)
                 .NotNull()
                 .WithMessage(ValidationErrors.EmptyField);
+
+            RuleFor(x => x.SelectedProduct)
+                .NotNull()
+                .WithMessage(ValidationErrors.ComboBoxEmptyValue);
 
             RuleFor(x => x.Count)
                 .GreaterThan(0)
