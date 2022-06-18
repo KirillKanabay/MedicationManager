@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using MedicationManager.BusinessLogic.Medications.Contracts;
 using MedicationManager.BusinessLogic.Stock.Contracts;
 using MedicationManager.BusinessLogic.Stock.Dtos;
+using MedicationManager.BusinessLogic.Stock.Filters;
 using MedicationManager.Data.Stocks.Contracts;
 using MedicationManager.Data.Stocks.Documents;
 using MedicationManager.Infrastructure.Extensions;
@@ -24,6 +26,18 @@ namespace MedicationManager.BusinessLogic.Stock.Services
             _mapper = mapper;
             _medicationService = medicationService;
             _stockRepository = stockRepository;
+        }
+
+        public async Task<List<TStockDto>> ListAsync(StockFilterDto filter)
+        {
+            var items = await ListAllAsync();
+
+            if (items == null)
+            {
+                return new List<TStockDto>();
+            }
+
+            return GetQuery(items, filter).ToList();
         }
 
         public virtual async Task<List<TStockDto>> ListAllAsync()
@@ -83,6 +97,19 @@ namespace MedicationManager.BusinessLogic.Stock.Services
             }
             
             return dto;
+        }
+
+        protected virtual IEnumerable<TStockDto> GetQuery(IEnumerable<TStockDto> items, StockFilterDto filter)
+        {
+            var query = items;
+
+            if (!filter.Name.IsNullOrWhitespace())
+            {
+                var regex = new Regex($"^{filter.Name}.*", RegexOptions.IgnoreCase);
+                query = query.Where(x => x.Medication?.Name != null && regex.IsMatch(x.Medication.Name));
+            }
+
+            return query;
         }
     }
 }

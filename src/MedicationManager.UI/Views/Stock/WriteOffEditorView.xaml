@@ -54,20 +54,29 @@
                     Style="{StaticResource InputComboBox}"
                     IsSynchronizedWithCurrentItem="True"
                     ItemsSource="{Binding Products}"
-                    SelectedItem="{Binding Model.Medication}"
                     IsEditable="True">
                     <b:Interaction.Triggers>
                         <b:EventTrigger EventName="SelectionChanged">
                             <b:InvokeCommandAction Command="{Binding OnProductSelection}" />
                         </b:EventTrigger>
                     </b:Interaction.Triggers>
+                    <ComboBox.SelectedItem>
+                        <Binding
+                            Path="Model.Medication"
+                            Mode="TwoWay"
+                            UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </ComboBox.SelectedItem>
                 </ComboBox>
                 <TextBox Margin="0,0,0,15" Width="350px"  Style="{StaticResource InputTextBox}">
                     <materialDesign:HintAssist.Hint>
                         <TextBlock>Отпускная цена за штуку (BYN)</TextBlock>
                     </materialDesign:HintAssist.Hint>
                     <TextBox.Text>
-                        <Binding Path="Model.PricePerItem" UpdateSourceTrigger="PropertyChanged">
+                        <Binding Path="Model.PricePerItem" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                             <Binding.ValidationRules>
                                 <DataErrorValidationRule />
                             </Binding.ValidationRules>
@@ -79,7 +88,7 @@
                         <TextBlock>Количество</TextBlock>
                     </materialDesign:HintAssist.Hint>
                     <TextBox.Text>
-                        <Binding Path="Model.Count" UpdateSourceTrigger="PropertyChanged">
+                        <Binding Path="Model.Count" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                             <Binding.ValidationRules>
                                 <DataErrorValidationRule />
                             </Binding.ValidationRules>

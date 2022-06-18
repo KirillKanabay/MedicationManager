@@ -127,8 +127,9 @@
                         Binding="{Binding Model.Count}"
                         Header="Количество на складе"
                         IsReadOnly="True" />
-                    <materialDesign:DataGridTextColumn
+                    <DataGridCheckBoxColumn
                         Binding="{Binding Model.ReceiptRequired}"
+                        ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                         Header="Наличие рецепта"
                         IsReadOnly="True" />
                     <DataGridTemplateColumn>

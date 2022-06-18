@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MedicationManager.BusinessLogic.Stock.Dtos;
+using MedicationManager.BusinessLogic.Stock.Filters;
 using MedicationManager.UI.Core.Models.Stock;
 
 namespace MedicationManager.UI.Core.Mappings
@@ -15,6 +16,9 @@ namespace MedicationManager.UI.Core.Mappings
                 .ReverseMap();
 
             CreateMap<BaseStockDto, BaseStockModel>()
+                .ReverseMap();
+
+            CreateMap<StockFilterModel, StockFilterDto>()
                 .ReverseMap();
         }
     }

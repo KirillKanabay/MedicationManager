@@ -17,7 +17,7 @@ namespace MedicationManager.UI.Core.Validators.Stocks
             
             RuleFor(x => x.Medication)
                 .NotEmpty()
-                .WithMessage(ValidationErrors.EmptyField);
+                .WithMessage(ValidationErrors.ComboBoxEmptyValue);
 
             RuleFor(x => x.Count)
                 .GreaterThan(0)
