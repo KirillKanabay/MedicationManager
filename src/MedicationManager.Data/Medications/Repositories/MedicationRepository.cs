@@ -35,7 +35,7 @@ namespace MedicationManager.Data.Medications.Repositories
                 if (filter.Name.Count == 1)
                 {
                     var medicationName = filter.Name.First();
-                    var regex = new Regex($"^.*{medicationName}.*", RegexOptions.IgnoreCase);
+                    var regex = new Regex($"^{medicationName}.*", RegexOptions.IgnoreCase);
                     query = query.Where(x => regex.IsMatch(x.Name));
                 }
                 else
